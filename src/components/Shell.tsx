@@ -97,6 +97,23 @@ export function Shell({ children }: { children: React.ReactNode }) {
             </div>
 
             <div className="ml-auto flex items-center gap-2">
+            {/* ------------------------------------------------- owner toggle */}
+            <Tip text="Andy's supervision view — the whole program, the decisions outstanding and the migration status.">
+              <button onClick={() => go(route === "owner" ? "ops-command" : "owner")}
+                role="switch" aria-checked={route === "owner"} aria-label="Owner view"
+                className={cx("inline-flex items-center gap-2 rounded-full border pl-2.5 pr-1.5 py-1 text-[11px] font-extrabold tracking-[.12em] transition-all",
+                  route === "owner" ? "border-transparent text-white shadow-lift" : "border-navy-100 text-ink/50 hover:border-navy-300 hover:text-navy-700")}
+                style={route === "owner" ? { background: "var(--navy)" } : undefined}>
+                <I.Crown size={13} strokeWidth={2.4} /> OWNER
+                <span className={cx("relative h-[16px] w-[28px] rounded-full transition-colors",
+                  route === "owner" ? "bg-white/30" : "bg-navy-100")}>
+                  <span className={cx("absolute top-[2px] h-[12px] w-[12px] rounded-full bg-white shadow transition-all",
+                    route === "owner" ? "left-[14px]" : "left-[2px]")} />
+                </span>
+              </button>
+            </Tip>
+
+
               <Tip text="212 family accounts · 96% reachable by SMS">
                 <span className="hidden md:inline-flex chip"><span className="h-1.5 w-1.5 rounded-full" style={{ background: "#159A63" }} /> Hub live</span>
               </Tip>
