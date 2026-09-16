@@ -148,11 +148,17 @@ export function Tip({ text, children, side = "top" }: { text: string; children: 
     const place = () => {
       const PAD = 8;
       const wr = w.getBoundingClientRect(), br = b.getBoundingClientRect();
-      // nearest ancestor that clips
+      // Prefer the panel the trigger lives in (the sidebar). Failing that, the
+      // nearest ancestor that clips. Never the raw viewport, or a bubble in a
+      // column overhangs onto the content beside it.
       let box: DOMRect | null = null;
-      for (let n = w.parentElement; n; n = n.parentElement) {
-        const cs = getComputedStyle(n);
-        if (cs.overflowX !== "visible" || cs.overflowY !== "visible") { box = n.getBoundingClientRect(); break; }
+      const aside = w.closest("aside");
+      if (aside) box = aside.getBoundingClientRect();
+      else {
+        for (let n = w.parentElement; n; n = n.parentElement) {
+          const cs = getComputedStyle(n);
+          if (cs.overflowX !== "visible" || cs.overflowY !== "visible") { box = n.getBoundingClientRect(); break; }
+        }
       }
       const left = box ? Math.max(box.left, 0) : 0;
       const right = box ? Math.min(box.right, window.innerWidth) : window.innerWidth;
