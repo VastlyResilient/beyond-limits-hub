@@ -101,6 +101,9 @@ export function applyTokens(t: Tokens) {
   for (const k in P) s.setProperty(k, P[k]);
   document.body.style.background = t.ground;
   document.body.style.fontFamily = "var(--font-sans)";
+  // keep the browser chrome in step with the theme
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) meta.setAttribute("content", t.ground);
 
   // persist the resolved values so the next load paints correctly BEFORE React mounts
   try { localStorage.setItem("bl.theme.v2.props", JSON.stringify({ ...P, ...FONTS[themeIdRef] })); } catch {}
