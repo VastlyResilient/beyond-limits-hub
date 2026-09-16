@@ -167,6 +167,19 @@ export function Tip({ text, children, side = "top" }: { text: string; children: 
       if (centred < left + PAD) shift = left + PAD - centred;
       else if (centred + br.width > right - PAD) shift = right - PAD - (centred + br.width);
       b.style.setProperty("--tx", `${Math.round(shift)}px`);
+
+      // Vertical flip: the header sits at y=0, so anything opening upward there
+      // lands above the screen. If there is no room, open downward instead.
+      b.style.top = ""; b.style.bottom = "";
+      const naturalTop = wr.top - br.height - 9;
+      const topLimit = (box ? Math.max(box.top, 0) : 0) + PAD;
+      if (naturalTop < topLimit) {
+        b.style.bottom = "auto";
+        b.style.top = "calc(100% + 9px)";
+      } else {
+        b.style.bottom = "calc(100% + 9px)";
+        b.style.top = "auto";
+      }
     };
     place();
     const ro = new ResizeObserver(place);

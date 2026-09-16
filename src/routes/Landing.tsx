@@ -69,7 +69,7 @@ export default function Landing() {
       </header>
 
       {/* =========================================================== hero */}
-      <section className="relative overflow-hidden">
+      <section className="relative overflow-x-clip">
         <div aria-hidden className="pointer-events-none absolute inset-0">
           <div className="absolute -right-40 -top-56 h-[620px] w-[620px] rounded-full" style={{ background: "radial-gradient(circle,rgba(254,222,39,.34),transparent 62%)", transform: `translateY(${y * 0.06}px)` }} />
           <div className="absolute -left-56 top-24 h-[520px] w-[520px] rounded-full" style={{ background: "radial-gradient(circle,rgb(var(--c-navy-700) / .12),transparent 65%)" }} />
@@ -188,7 +188,7 @@ export default function Landing() {
       </section>
 
       {/* ================================================= the gap (navy) */}
-      <section id="why" className="navy-field on-dark grain relative overflow-hidden">
+      <section id="why" className="navy-field on-dark grain relative overflow-x-clip">
         <div className="wrap-wide relative grid gap-12 py-20 lg:grid-cols-[.85fr_1.15fr]">
           <Reveal>
             <div className="eyebrow text-solar">Why this exists</div>
@@ -560,7 +560,7 @@ export default function Landing() {
       </section>
 
       {/* ============================================================ CTA */}
-      <section className="relative overflow-hidden" style={{ background: "var(--solar)" }}>
+      <section className="relative overflow-x-clip" style={{ background: "var(--solar)" }}>
         <div aria-hidden className="absolute inset-0 ruled opacity-40" />
         <div className="wrap-wide relative py-20 text-center">
           <Reveal>

@@ -53,7 +53,7 @@ export default function OpsMessages() {
         sub={`${threads.length} conversations · ${unreadTotal} unread · families, guardians and tutors in one place`}
         actions={<Button variant="ghost" icon={I.Archive} onClick={() => toast("Conversations older than 30 days archived")}>Archive read</Button>} />
 
-      <div className="grid gap-5 lg:grid-cols-[300px_1fr_290px] items-start">
+      <div className="grid gap-5 xl:grid-cols-[280px_1fr_260px] items-start">
         {/* ------------------------------------------------ conversation list */}
         <Card pad={false} className="overflow-hidden lg:sticky lg:top-6">
           <div className="p-3 border-b border-navy-100 space-y-2.5">

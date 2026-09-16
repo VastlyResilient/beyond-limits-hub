@@ -114,7 +114,7 @@ export default function OpsSessions() {
             action={<Button variant="ghost" size="sm" onClick={() => { setQuery(""); setStatusFilter("all"); setRoomFilter("all"); }}>Clear filters</Button>} />
         ) : (
           <div className="overflow-x-auto">
-            <table className="tbl min-w-[780px]">
+            <table data-trim="sessions" className="tbl md:min-w-[780px]">
               <thead>
                 <tr>
                   <Th k="when">Date · Time</Th>

@@ -100,7 +100,7 @@ export default function OpsAnalytics() {
         <Card className="xl:col-span-2" pad={false}>
           <div className="px-5 pt-4"><SectionTitle eyebrow="Channel fit" title="Right channel, right message" /></div>
           <div className="overflow-x-auto">
-            <table className="tbl min-w-[520px]">
+            <table data-trim="analytics" className="tbl md:min-w-[520px]">
               <thead><tr><th>Channel</th><th className="text-right">Reach</th><th>Best for</th><th className="w-[34%]">Coverage</th></tr></thead>
               <tbody>
                 {CHANNEL_FIT.map(c => (

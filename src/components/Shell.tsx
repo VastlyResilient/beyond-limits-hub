@@ -98,7 +98,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
 
             <div className="ml-auto flex items-center gap-2">
             {/* ------------------------------------------------- owner toggle */}
-            <Tip text="Andy's supervision view — the whole program, the decisions outstanding and the migration status.">
+            <Tip side="bottom" text="Andy's supervision view — the whole program, the decisions outstanding and the migration status.">
               <button onClick={() => go(route === "owner" ? "ops-command" : "owner")}
                 role="switch" aria-checked={route === "owner"} aria-label="Owner view"
                 className={cx("inline-flex items-center gap-2 rounded-full border pl-2.5 pr-1.5 py-1 text-[11px] font-extrabold tracking-[.12em] transition-all",
@@ -114,7 +114,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
             </Tip>
 
 
-              <Tip text="212 family accounts · 96% reachable by SMS">
+              <Tip side="bottom" text="212 family accounts · 96% reachable by SMS">
                 <span className="hidden md:inline-flex chip"><span className="h-1.5 w-1.5 rounded-full" style={{ background: "#159A63" }} /> Hub live</span>
               </Tip>
 

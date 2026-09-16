@@ -141,3 +141,29 @@ input,textarea,[contenteditable]{ cursor:text }
 --------------------------------------------------------------------------- */
 main :where(.grid, .flex) > :where(*) { min-width: 0 }
 main :where(.grid) > :where(*) { max-width: 100% }
+
+/* ---------------------------------------------------------------------------
+   Narrow screens: drop the low-value columns rather than letting the table
+   scroll content off the edge. Keyed by column index so a header can never
+   drift out of sync with its cells.
+--------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+  .tbl[data-trim="sessions"] > thead > tr > :nth-child(3),
+  .tbl[data-trim="sessions"] > tbody > tr > :nth-child(3),
+  .tbl[data-trim="sessions"] > thead > tr > :nth-child(4),
+  .tbl[data-trim="sessions"] > tbody > tr > :nth-child(4),
+  .tbl[data-trim="sessions"] > thead > tr > :nth-child(5),
+  .tbl[data-trim="sessions"] > tbody > tr > :nth-child(5),
+  .tbl[data-trim="sessions"] > thead > tr > :nth-child(6),
+  .tbl[data-trim="sessions"] > tbody > tr > :nth-child(6) { display: none }
+
+  .tbl[data-trim="payments"] > thead > tr > :nth-child(2),
+  .tbl[data-trim="payments"] > tbody > tr > :nth-child(2),
+  .tbl[data-trim="payments"] > thead > tr > :nth-child(3),
+  .tbl[data-trim="payments"] > tbody > tr > :nth-child(3),
+  .tbl[data-trim="payments"] > thead > tr > :nth-child(6),
+  .tbl[data-trim="payments"] > tbody > tr > :nth-child(6) { display: none }
+
+  .tbl[data-trim="analytics"] > thead > tr > :nth-child(3),
+  .tbl[data-trim="analytics"] > tbody > tr > :nth-child(3) { display: none }
+}

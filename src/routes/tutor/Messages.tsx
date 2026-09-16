@@ -27,7 +27,7 @@ export default function TutorMessages() {
         title="Guardian threads"
         sub="Short, kind, specific. That's the whole messaging policy." />
 
-      <div className="grid gap-5 lg:grid-cols-[260px_1fr_280px] items-start">
+      <div className="grid gap-5 xl:grid-cols-[260px_1fr_280px] items-start">
         {/* thread list */}
         <Card pad={false} className="overflow-hidden">
           {threads.map(x => (

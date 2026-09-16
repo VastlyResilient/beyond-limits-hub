@@ -94,7 +94,7 @@ export default function OpsPayments() {
               <SectionTitle eyebrow="Ledger" title="November invoices" />
             </div>
             <div className="overflow-x-auto">
-              <table className="tbl min-w-[640px]">
+              <table data-trim="payments" className="tbl md:min-w-[640px]">
                 <thead>
                   <tr>
                     <Th k="family">Family · Student</Th>
