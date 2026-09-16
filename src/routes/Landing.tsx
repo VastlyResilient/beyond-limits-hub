@@ -587,7 +587,7 @@ export default function Landing() {
         <div className="wrap-wide relative py-14">
           <div className="grid gap-10 lg:grid-cols-[1.2fr_1fr_1fr]">
             <div>
-              <Lockup dark />
+              <Wordmark dark />
               <p className="mt-5 max-w-[380px] text-[12.5px] leading-relaxed text-white/55">{ORG.mission}</p>
               <div className="mt-5 flex flex-wrap gap-2">
                 <Chip dark>Est. {ORG.founded}</Chip>

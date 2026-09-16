@@ -37,9 +37,15 @@ export function Shell({ children }: { children: React.ReactNode }) {
       {/* ---------------------------------------------------------- sidebar */}
       <aside className={cx("fixed inset-y-0 left-0 z-50 w-[266px] flex-col navy-field on-dark grain transition-transform lg:static lg:flex",
         open ? "flex translate-x-0" : "-translate-x-full lg:translate-x-0")}>
-        <div className="relative z-10 flex items-center justify-between px-5 pt-5 pb-4">
-          <button onClick={() => go("home")} aria-label="Beyond Limits Hub home"><Lockup dark /></button>
-          <button className="lg:hidden text-white/60" onClick={() => setOpen(false)} aria-label="Close menu"><I.X size={18} /></button>
+        {/* Brand band: full-width warm ground so the logo's own dark artwork sits
+            on a light surface exactly as designed — no floating white box, and the
+            glyphs are never recoloured. */}
+        <div className="relative z-10" style={{ background: "#faf7f2" }}>
+          <div className="flex items-center justify-between px-5 pt-4 pb-4">
+            <button onClick={() => go("home")} aria-label="Beyond Limits Hub home"><Lockup /></button>
+            <button className="lg:hidden text-ink/45" onClick={() => setOpen(false)} aria-label="Close menu"><I.X size={18} /></button>
+          </div>
+          <span className="block h-[3px] w-full" style={{ background: "linear-gradient(90deg,var(--solar),var(--solar-600))" }} />
         </div>
 
         <div className="relative z-10 px-5">

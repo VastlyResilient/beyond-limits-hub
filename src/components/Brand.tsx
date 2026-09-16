@@ -25,19 +25,15 @@ export function BLMark({ size = 34, radius = 11 }: { size?: number; radius?: num
 
 /* The full brand lockup. On dark surfaces the logo keeps its own colours on a
    warm plate; it is never inverted. */
-export function Lockup({ dark = false, sub = "Hub", width }: { dark?: boolean; sub?: string; width?: number }) {
-  const w = width ?? (dark ? 156 : 146);
+export function Lockup({ dark = false, width }: { dark?: boolean; width?: number }) {
+  // Transparent PNG, no plate of any kind. It is dark artwork, so it belongs on
+  // a light ground — the sidebar gives it a full-width warm brand band.
+  const w = width ?? 150;
   return (
-    <div className="flex items-center gap-2.5 select-none">
-      <div className={dark ? "rounded-[14px] px-2.5 py-2" : ""}
-        style={dark ? { background: "#faf7f2" } : undefined}>
-        <img src="./brand/beyond-limits-logo.png"
-          alt={`Beyond Limits Academics — a program of Stamford Peace Youth Foundation`}
-          style={{ width: w, height: "auto", display: "block" }} />
-      </div>
-      {dark && sub && (
-        <span className="sr-only">{sub}</span>
-      )}
+    <div className="flex items-center select-none">
+      <img src="./brand/beyond-limits-logo.png"
+        alt="Beyond Limits Academics — a program of Stamford Peace Youth Foundation"
+        style={{ width: w, height: "auto", display: "block" }} />
     </div>
   );
 }
