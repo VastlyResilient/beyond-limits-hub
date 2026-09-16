@@ -1,0 +1,110 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Beyond Limits — Studio</title>
+<link rel="stylesheet" href="dl.css">
+<style>
+:root{--bg:#FFFFFF;--card:#FFFFFF;--soft:#F6F7F9;--line:#ECEEF2;--line-2:#DEE1E7;--tint:#F6F7F9;
+  --ink:#111827;--ink-2:#374151;--ink-3:#6B7280;--ink-4:#9CA3AF;
+  --brand:#183868;--accent:#F5C842;--accent-strong:#E2AF1E;--accent-soft:#FEF8E3;--accent-line:#F2E3B4;--accent-ink:#2A2205;--accent-ink2:#8A6A0B}
+header.top{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.tin{display:flex;align-items:center;height:74px;gap:30px}
+.tnav{display:flex;gap:26px;font-size:13.5px;font-weight:500;color:var(--ink-3)}
+.tnav a{padding:6px 0;border-bottom:1.5px solid transparent}
+.tnav a:hover{color:var(--ink)}
+.tnav a.on{color:var(--ink);border-color:var(--brand)}
+.stage{background:var(--brand);border-radius:26px;padding:52px 54px;color:#fff;position:relative;overflow:hidden;
+  box-shadow:0 30px 70px -30px rgba(24,56,104,.55)}
+.stage::after{content:"";position:absolute;right:-120px;top:-120px;width:380px;height:380px;border-radius:50%;
+  background:radial-gradient(circle,rgba(245,200,66,.22),transparent 68%)}
+.stage h1{color:#fff;font-size:clamp(29px,3.4vw,43px);letter-spacing:-.03em;line-height:1.1;margin:18px 0 16px;max-width:17ch}
+.stage p{color:rgba(255,255,255,.76);font-size:15.5px;max-width:50ch;line-height:1.7}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:30px}
+@media(max-width:980px){.g3{grid-template-columns:1fr}.two{grid-template-columns:1fr!important}}
+.kcard{background:#fff;border:1px solid var(--line);border-radius:20px;padding:32px 30px;box-shadow:0 1px 2px rgba(17,24,39,.03),0 18px 40px -26px rgba(17,24,39,.16)}
+.two{display:grid;grid-template-columns:1.38fr 1fr;gap:24px;margin-top:26px;align-items:start}
+.li{display:grid;grid-template-columns:1fr auto;gap:22px;padding:20px 0;border-bottom:1px solid var(--line);align-items:center}
+.li:last-child{border-bottom:0}
+.li:hover .nm{color:var(--brand)}
+.nm{transition:color .18s;font-weight:550;font-size:14px}
+.av{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;font-family:'Sora';font-weight:600;font-size:13px;
+  background:var(--soft);color:var(--brand);border:1px solid var(--line)}
+</style></head><body>
+<div class="ground g-studio"></div>
+<header class="top"><div class="wrap tin">
+  <img src="brand/favicon.png" alt="" style="height:30px;width:30px;border-radius:9px" onerror="this.style.display='none'">
+  <span style="font-family:'Sora';font-weight:600;font-size:15.5px;letter-spacing:-.015em">Beyond Limits</span>
+  <span class="chip" style="margin-left:-16px">Operations</span>
+  <nav class="tnav" style="margin-left:20px"><a class="on" href="#">Overview</a><a href="#">Families</a><a href="#">Messages</a><a href="#">Attendance</a></nav>
+  <div class="spacer row" style="gap:12px">
+    <div class="row" style="gap:9px;background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:9px 14px;min-width:250px">
+      <svg class="ic ic-sm" viewBox="0 0 24 24" style="stroke:var(--ink-4)"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <span class="txs" style="color:var(--ink-4)">Search families and codes</span></div>
+    <button class="btn btn-ghost btn-sm">Export</button>
+    <div style="width:34px;height:34px;border-radius:12px;background:var(--brand);color:#fff;display:grid;place-items:center;font-family:'Sora';font-size:12.5px;font-weight:600">AS</div>
+  </div>
+</div></header>
+
+<div class="wrap" style="padding:44px 0 80px">
+  <div class="eyebrow rise">Wednesday, 16 September 2026</div>
+  <h1 class="rise" style="font-size:clamp(28px,3.2vw,40px);margin:14px 0 12px">Program overview</h1>
+  <p class="tsm rise" style="color:var(--ink-3);max-width:64ch">A single view of the roster, the codes and the families waiting on a person. Every number here comes from the same family list.</p>
+
+  <section class="stage rise" style="margin-top:32px">
+    <div style="position:relative;z-index:2">
+      <span class="chip" style="background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.2);color:#fff">The one that blocks everything</span>
+      <h1>104 families have no participant code.</h1>
+      <p>ParentSquare cannot onboard a family it cannot identify. Beyond Limits sits outside the district, so there is no school-assigned number to fall back on — your code is the only identifier these families will have.</p>
+      <div class="row" style="gap:12px;margin-top:26px">
+        <button class="btn btn-accent btn-lg">Issue all 104 codes</button>
+        <button class="btn btn-lg" style="background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.22)">Read the migration plan</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="g3">
+    <div class="kcard rise"><div class="eyebrow">Roster</div>
+      <div class="num num-lg tnum" style="margin:14px 0 6px;color:var(--brand)">113</div>
+      <div class="row" style="gap:6px;margin-top:12px;flex-wrap:wrap"><span class="chip">94 Main</span><span class="chip">12 Horizons</span><span class="chip">10 SCSE</span><span class="chip">4 Starfish</span></div>
+      <div class="meter thick" style="margin-top:20px"><i data-w="100%"></i></div><div class="row txs muted" style="margin-top:9px"><span>113 families on the roster</span></div></div>
+    <div class="kcard rise"><div class="eyebrow">Codes issued</div>
+      <div class="num num-lg tnum" style="margin:14px 0 6px;color:var(--brand)">9</div>
+      <div class="tsm muted">One series for the whole program.</div><div style="margin-top:12px"><span class="code">next · BL-2026-0010</span></div>
+      <div class="meter accent thick" style="margin-top:20px"><i data-w="8%"></i></div><div class="row txs muted" style="margin-top:9px"><span><b style="color:var(--ink-2)">9</b> of 113 &middot; 8%</span></div></div>
+    <div class="kcard rise"><div class="eyebrow">Reach</div>
+      <div class="num num-lg tnum" style="margin:14px 0 6px;color:var(--brand)">94%</div>
+      <div class="tsm muted">Read the last notice within a day.</div><div style="margin-top:12px"><span class="chip">41 RSVPs for family night</span></div>
+      <div class="meter green thick" style="margin-top:20px"><i data-w="94%"></i></div><div class="row txs muted" style="margin-top:9px"><span>106 of 113 families read it</span></div></div>
+  </div>
+
+  <div class="two">
+    <section class="kcard rise" style="padding:0">
+      <div style="padding:32px 30px 22px"><div class="eyebrow">Waiting on a human</div>
+        <div class="tsm muted" style="margin-top:8px">Two decisions and four repairs. Nothing here can be automated safely.</div></div>
+      <div style="padding:0 30px 30px">
+        <div class="li"><div class="row" style="gap:14px"><span class="av">ER</span><div><div class="nm">Rojas, Annabella — which record survives?</div><div class="txs muted">Main 8 Nov 2024 · SCSE 5 Dec 2024 · same date of birth</div></div></div><button class="btn btn-sm" style="background:var(--soft);border-color:var(--line)">Decide</button></div>
+        <div class="li"><div class="row" style="gap:14px"><span class="av">AL</span><div><div class="nm">Lopez, Anthony — three submissions, two tracks</div><div class="txs muted">Main twice, plus a Starfish row copied from the second</div></div></div><button class="btn btn-sm" style="background:var(--soft);border-color:var(--line)">Decide</button></div>
+        <div class="li"><div class="row" style="gap:14px"><span class="av" style="background:#FDF3E2;color:#8A5A12;border-color:#F2DFBB">ST</span><div><div class="nm">Starfish tab needs restructuring</div><div class="txs muted">Pasted rows, real header sitting at row 10</div></div></div><button class="btn btn-sm" style="background:var(--soft);border-color:var(--line)">Fix</button></div>
+        <div class="li"><div class="row" style="gap:14px"><span class="av" style="background:#FBECEA;color:#A6382B;border-color:#F3D2CD">MS</span><div><div class="nm">Morales, Bilal has missed five sessions</div><div class="txs muted">Friday follow-up list</div></div></div><button class="btn btn-sm" style="background:var(--soft);border-color:var(--line)">Call</button></div>
+      </div>
+    </section>
+
+    <div class="col" style="gap:20px">
+      <section class="kcard rise"><div class="eyebrow">Today</div>
+        <div style="margin-top:16px">
+          <div class="row" style="padding:12px 0;border-bottom:1px solid var(--line)"><span class="mono txs" style="color:var(--ink-3);width:46px">3:30</span><div style="flex:1;font-size:13.5px">Tutoring block</div><span class="txs muted">6</span></div>
+          <div class="row" style="padding:12px 0;border-bottom:1px solid var(--line)"><span class="mono txs" style="color:var(--ink-3);width:46px">4:15</span><div style="flex:1;font-size:13.5px">Horizons lab</div><span class="txs muted">4</span></div>
+          <div class="row" style="padding:12px 0"><span class="mono txs" style="color:var(--ink-3);width:46px">6:00</span><div style="flex:1;font-size:13.5px">SCSE family night</div><span class="chip chip-accent">17 families</span></div>
+        </div></section>
+      <section class="kcard rise"><div class="eyebrow">ParentSquare</div>
+        <div class="tsm muted" style="margin-top:12px">Your code is the external identifier. Nine rows are already shaped for import.</div>
+        <div class="meter thick" style="margin-top:18px"><i data-w="8%"></i></div><div class="row txs muted" style="margin-top:9px"><span>9 of 113 rows shaped for import</span></div>
+        <button class="btn btn-primary btn-sm" style="width:100%;justify-content:center;margin-top:18px">Run pre-flight validation</button></section>
+    </div>
+  </div>
+</div>
+<script>
+setTimeout(()=>{document.querySelectorAll('.meter > i').forEach((el,i)=>{const w=el.dataset.w;setTimeout(()=>{el.style.width=w;},i*130);});},240);
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.04});
+document.querySelectorAll('.rise').forEach((el,i)=>{el.style.transitionDelay=(i*55)+'ms';io.observe(el);});
+setTimeout(()=>document.querySelectorAll('.rise:not(.in)').forEach(e=>e.classList.add('in')),1400);
+</script></body></html>

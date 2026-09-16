@@ -1,0 +1,49 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Beyond Limits — four design systems</title><link rel="stylesheet" href="dl.css">
+<style>
+:root{--bg:#F7F4EE;--card:#fff;--soft:#F6F3EC;--line:#E8E2D6;--line-2:#D8D1C2;--tint:#F6F3EC;
+ --ink:#161C26;--ink-2:#3E4757;--ink-3:#6C7484;--ink-4:#9AA1AE;--brand:#183868;--accent:#E8B84B;--accent-strong:#D9A32C;--accent-soft:#FDF4E1;--accent-line:#F0E0BC;--accent-ink:#2A2205;--accent-ink2:#8A6A0B}
+.wrap{width:min(1300px,93vw);margin:0 auto;padding:40px 0 100px}
+h1{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,4.4vw,54px);line-height:1.06;margin:16px 0 14px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:38px}
+@media(max-width:940px){.grid{grid-template-columns:1fr}}
+.tile{display:block;border-radius:20px;overflow:hidden;background:#fff;border:1px solid var(--line);
+ box-shadow:0 1px 3px rgba(22,28,38,.06),0 16px 40px -26px rgba(22,28,38,.24);transition:.25s cubic-bezier(.2,.8,.25,1)}
+.tile:hover{transform:translateY(-4px);box-shadow:0 2px 6px rgba(22,28,38,.08),0 28px 60px -28px rgba(22,28,38,.36)}
+.shot{position:relative;height:230px;overflow:hidden;border-bottom:1px solid var(--line)}
+.shot iframe{position:absolute;top:0;left:0;width:1400px;height:1000px;border:0;transform:scale(.38);transform-origin:0 0;pointer-events:none}
+.tile .meta{padding:22px 24px 24px}
+.tag{display:inline-block;margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--accent-ink2)}
+</style></head><body>
+<div class="ground g-paper"></div>
+<div class="wrap">
+  <div class="eyebrow">Built to real DESIGN.md tokens · styles.refero.design</div>
+  <h1>Four real product systems,<br>applied to the same dashboard.</h1>
+  <p style="font-size:15.5px;color:var(--ink-3);max-width:66ch;margin:0">Each direction below pulls its palette, type scale, radii and button anatomy from the actual design system of a shipped product — not from my taste. The data and the structure are identical across all four.</p>
+  <div class="grid">
+    <a class="tile" href="v1-paper.html">
+      <div class="shot" style="background:#faf7f2"><iframe src="v1-paper.html" loading="lazy" scrolling="no"></iframe></div>
+      <div class="meta"><h3 style="font-size:20px">Paper</h3>
+        <p class="tsm muted" style="margin-top:6px">ElevenLabs design system — warm cream ground, stone hairlines, 20px card radii, pill buttons. Ink on cream, one yellow note.</p>
+        <span class="tag">ElevenLabs · warm editorial</span></div></a>
+    <a class="tile" href="v2-studio.html">
+      <div class="shot" style="background:#fff"><iframe src="v2-studio.html" loading="lazy" scrolling="no"></iframe></div>
+      <div class="meta"><h3 style="font-size:20px">Studio</h3>
+        <p class="tsm muted" style="margin-top:6px">Apple design system — near-white canvas, one vivid blue, type as the voice with negative tracking that tightens at scale. The product IS the design.</p>
+        <span class="tag">Apple · near-white restraint</span></div></a>
+    <a class="tile" href="v3-atelier.html">
+      <div class="shot" style="background:#fff"><iframe src="v3-atelier.html" loading="lazy" scrolling="no"></iframe></div>
+      <div class="meta"><h3 style="font-size:20px">Atelier</h3>
+        <p class="tsm muted" style="margin-top:6px">Duolingo design system — bright rounded cards, Feather-bold Nunito, one green at 48–64px. Playful without being childish.</p>
+        <span class="tag">Duolingo · bright and rounded</span></div></a>
+    <a class="tile" href="v4-nocturne.html">
+      <div class="shot" style="background:#05060f"><iframe src="v4-nocturne.html" loading="lazy" scrolling="no"></iframe></div>
+      <div class="meta"><h3 style="font-size:20px">Nocturne</h3>
+        <p class="tsm muted" style="margin-top:6px">Authkit design system — frosted-glass cathedral at midnight, one violet CTA, blueprint blue reduced to decorative strokes. Glass done tastefully.</p>
+        <span class="tag">Authkit · frosted glass</span></div></a>
+  </div>
+  <div class="row" style="margin-top:36px">
+    <span class="tsm muted">Also see: <a href="systems.html" style="color:var(--brand);text-decoration:underline">all ten reference systems</a></span>
+  </div>
+</div>
+</body></html>

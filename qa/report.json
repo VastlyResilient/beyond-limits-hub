@@ -1,0 +1,29 @@
+[
+  {
+    "route": "ops-composer",
+    "title": "Beyond Limits Hub — Powering Every Learner",
+    "h": 1689,
+    "w": 1440,
+    "hOverflow": false,
+    "buttons": 52,
+    "links": 0,
+    "h1": 1,
+    "imgs": [
+      {
+        "src": "stamford-peace-mark.png",
+        "ok": true
+      },
+      {
+        "src": "favicon.png",
+        "ok": true
+      }
+    ],
+    "overflowing": [],
+    "deadButtons": 0,
+    "tinyText": 4,
+    "bodyText": 3040,
+    "hasContent": true,
+    "brokenImgs": [],
+    "errors": []
+  }
+]

@@ -1,0 +1,66 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Beyond Limits — Atelier · Duolingo design system</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600..800&family=Inter:wght@400..600&display=swap" rel="stylesheet">
+<style>
+:root{--green:#58cc02;--green2:#a5ed6e;--greenwash:#d7ffb8;--ink:#000437;--ink2:#4b4b4b;--ink3:#777;
+  --bg:#fff;--card:#fff;--soft:#f7f7f7;--line:#e5e5e5;--hair:#efefef;--r:18px;--rr:26px}
+*{box-sizing:border-box}body{margin:0;font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.55;color:var(--ink2);background:var(--bg);-webkit-font-smoothing:antialiased}
+h1,h2,h3{margin:0;font-family:'Nunito',system-ui,sans-serif;font-weight:800;letter-spacing:-.02em;line-height:1.2}
+h1{font-size:clamp(34px,4.6vw,54px)}h2{font-size:clamp(22px,2.4vw,32px)}
+.wrap{width:min(1280px,92vw);margin:0 auto}
+.card{background:var(--card);border:2px solid var(--hair);border-radius:var(--rr);padding:28px;transition:border-color .15s}
+.card:hover{border-color:var(--green2)}
+.eyebrow{font-family:'Inter',sans-serif;font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3)}
+.row{display:flex;align-items:center;gap:14px}.spacer{margin-left:auto}
+.btn{font-family:'Nunito',sans-serif;font-weight:750;font-size:15px;padding:14px 26px;border-radius:16px;border:0;cursor:pointer;transition:.12s;letter-spacing:-.005em}
+.btn-solid{background:var(--green);color:#fff;box-shadow:0 2px 0 #43a000,0 6px 18px -10px rgba(88,204,2,.5)}.btn-solid:active{transform:translateY(2px);box-shadow:none}
+.btn-soft{background:var(--greenwash);color:#3c8c00}
+.mono{font-family:ui-monospace,monospace;font-size:12.5px;font-weight:600;letter-spacing:.01em}
+.chip{font-size:11.5px;font-weight:700;padding:4px 12px;border-radius:12px;background:var(--soft);border:2px solid var(--hair);white-space:nowrap}
+.chip-g{background:var(--greenwash);border-color:var(--green2);color:#3c8c00}
+.num{font-family:'Nunito',sans-serif;font-weight:800;letter-spacing:-.025em;line-height:1}
+.trackgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:28px}
+.track{background:var(--card);border:2px solid var(--hair);border-radius:var(--rr);padding:26px 22px;text-align:center}
+.track .n{font-size:42px;color:var(--green);margin:8px 0 4px}
+.famgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+.fam{background:var(--card);border:2px solid var(--hair);border-radius:20px;padding:16px}
+@media(max-width:1000px){.trackgrid{grid-template-columns:repeat(2,1fr)}}
+</style></head><body>
+<div class="wrap" style="padding:30px 0 70px">
+  <header class="row">
+    <div class="row" style="gap:10px"><div style="width:36px;height:36px;border-radius:12px;background:var(--green);color:#fff;display:grid;place-items:center;font-family:'Nunito';font-weight:800;font-size:14px">BL</div>
+      <div><div style="font-family:'Nunito';font-weight:800;font-size:16px;color:var(--ink)">Beyond Limits</div><div class="eyebrow" style="font-size:10px;color:var(--ink3)">Long Ridge Road, Stamford</div></div></div>
+    <nav class="row spacer" style="gap:28px">
+      <a href="#" style="font-family:'Nunito';font-weight:750;font-size:13.5px;color:var(--ink)">Overview</a>
+      <a href="#" style="font-family:'Nunito';font-weight:750;font-size:13.5px;color:var(--ink3)">Families</a>
+      <a href="#" style="font-family:'Nunito';font-weight:750;font-size:13.5px;color:var(--ink3)">Messages</a></nav>
+  </header>
+
+  <div style="margin-top:50px">
+    <h1 style="max-width:16ch">Every family, <span style="color:var(--green)">one code.</span> Nothing slipping through.</h1>
+    <p style="font-size:15px;color:var(--ink3);max-width:55ch;margin:16px 0 22px">ParentSquare needs an identifier. The school district cannot provide one. That leaves us — and 104 families still need theirs.</p>
+    <button class="btn btn-solid" style="padding:17px 32px;font-size:16px">Issue the 104 codes</button>
+  </div>
+
+  <div class="trackgrid">
+    <div class="track"><div class="eyebrow">Main</div><div class="n num">94</div><div style="font-size:13px;color:var(--ink3)">families</div></div>
+    <div class="track"><div class="eyebrow">Horizons</div><div class="n num">12</div><div style="font-size:13px;color:var(--ink3)">families</div></div>
+    <div class="track"><div class="eyebrow">SCSE</div><div class="n num">10</div><div style="font-size:13px;color:var(--ink3)">families</div></div>
+    <div class="track"><div class="eyebrow">Starfish</div><div class="n num">4</div><div style="font-size:13px;color:var(--ink3)">families</div></div>
+    <div class="track" style="border-style:dashed;display:grid;place-items:center"><div class="eyebrow">Codes issued</div><div class="n num">9 / 113</div><div style="font-size:13px;color:var(--ink3);margin-top:4px">8% done</div></div>
+  </div>
+
+  <div style="margin-top:36px"><div class="eyebrow" style="margin-bottom:18px">Families waiting on a code</div>
+    <div class="famgrid">
+      <div class="fam"><div style="font-weight:700;font-size:14px">Shalauddin, Ethan</div><div style="font-size:12px;color:var(--ink3);margin:3px 0 8px">Grade 7 · Main &amp; SCSE</div><div class="row"><span class="mono">BL-2026-0002</span><span class="chip chip-g spacer">dup</span></div></div>
+      <div class="fam"><div style="font-weight:700;font-size:14px">Rojas, Annabella</div><div style="font-size:12px;color:var(--ink3);margin:3px 0 8px">Grade 5 · Main &amp; SCSE</div><div class="row"><span class="mono">BL-2026-0001</span><span class="chip spacer">decide</span></div></div>
+      <div class="fam"><div style="font-weight:700;font-size:14px">Lopez, Anthony</div><div style="font-size:12px;color:var(--ink3);margin:3px 0 8px">Grade 9 · Main &amp; Starfish</div><span class="mono" style="color:var(--ink3)">needs a code</span></div>
+      <div class="fam"><div style="font-weight:700;font-size:14px">Lopez, Mia</div><div style="font-size:12px;color:var(--ink3);margin:3px 0 8px">Grade 6 · Main</div><span class="mono" style="color:var(--ink3)">needs a code</span></div>
+      <div class="fam"><div style="font-weight:700;font-size:14px">Rivas, Danna</div><div style="font-size:12px;color:var(--ink3);margin:3px 0 8px">Grade 8 · Main</div><span class="mono" style="color:var(--ink3)">needs a code</span></div>
+      <div class="fam" style="border-style:dashed;display:grid;place-items:center"><div class="num" style="font-size:36px;color:var(--ink3)">104</div><div style="font-size:13px;color:var(--ink3)">more</div></div>
+    </div></div>
+  <div class="card" style="margin-top:28px"><div class="eyebrow">Missed-session rule</div>
+    <div style="font-size:14px;color:var(--ink2);margin-top:10px">Miss two of five sessions and the family hears from us — in their language, never twice in a day. Your rule, running quietly.</div>
+    <div class="row" style="margin-top:16px;gap:22px"><div style="font-size:14px"><span style="font-weight:700">Morales, Bilal</span> — 5 missed</div><div style="font-size:14px"><span style="font-weight:700">Lopez, Anthony</span> — 4 missed</div></div></div>
+</div>
+</body></html>

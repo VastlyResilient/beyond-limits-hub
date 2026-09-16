@@ -1,0 +1,109 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400..700&family=Manrope:wght@300..800&family=JetBrains+Mono:wght@400..700&display=swap');
+:root{
+  --navy:#183868; --navy-deep:#0B1A33; --solar:#FEDE27; --solar-deep:#E8B400;
+  --teal:#0E8C8C; --violet:#6C4BD6; --green:#159A63; --amber:#DE8C00; --red:#D93A2B;
+  --g-fill: rgba(255,255,255,.085); --g-fill-2: rgba(255,255,255,.055);
+  --g-stroke: rgba(255,255,255,.16); --g-blur: 34px;
+  --g-shadow: 0 2px 6px rgba(4,10,22,.28), 0 24px 60px rgba(4,10,22,.42);
+  --g-inner: inset 0 1px 0 rgba(255,255,255,.22), inset 0 -1px 0 rgba(255,255,255,.05);
+  --ink-1:#fff; --ink-2:rgba(255,255,255,.86); --ink-3:rgba(255,255,255,.66); --ink-4:rgba(255,255,255,.5);
+  --f-d:'Space Grotesk',system-ui,sans-serif; --f-b:'Manrope',system-ui,sans-serif; --f-m:'JetBrains Mono',ui-monospace,monospace;
+  --r-sm:10px; --r-md:16px; --r-lg:22px; --r-xl:30px;
+}
+*{box-sizing:border-box} html,body{height:100%}
+body{margin:0;background:#06090F;color:var(--ink-1);font-family:var(--f-b);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4{font-family:var(--f-d);margin:0;font-weight:600;letter-spacing:-.02em;line-height:1.1}
+a{color:inherit;text-decoration:none}
+.mono{font-family:var(--f-m);font-variant-ligatures:none}
+.tnum{font-variant-numeric:tabular-nums}
+.eyebrow{font-family:var(--f-m);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--ink-3)}
+.txs{font-size:12.5px;line-height:1.6}.tsm{font-size:13.5px;line-height:1.62}.muted{color:var(--ink-3)}.muted2{color:var(--ink-4)}
+.row{display:flex;align-items:center;gap:12px}.spacer{margin-left:auto}
+.wall{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:#06090F}
+.wall img,.wall video{position:absolute;inset:-4%;width:108%;height:108%;object-fit:cover;animation:drift 44s ease-in-out infinite alternate;will-change:transform}
+@keyframes drift{from{transform:scale(1.03) translate3d(-1.2%,-1%,0)}to{transform:scale(1.09) translate3d(1.4%,1.2%,0)}}
+.wall .scrim{position:absolute;inset:0;background:radial-gradient(120% 90% at 78% 8%,rgba(11,26,51,.10),transparent 60%),linear-gradient(180deg,rgba(6,9,15,.42) 0%,rgba(6,9,15,.24) 42%,rgba(6,9,15,.66) 100%)}
+.wall .scrim.heavy{background:linear-gradient(180deg,rgba(5,10,20,.64) 0%,rgba(5,10,20,.44) 45%,rgba(5,8,16,.76) 100%),radial-gradient(80% 60% at 70% 30%,rgba(24,56,104,.3),transparent 65%)}
+.wall .grain{position:absolute;inset:0;opacity:.32;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E")}
+.glass{position:relative;isolation:isolate;background:var(--g-fill);border:1px solid var(--g-stroke);border-radius:var(--r-lg);
+  backdrop-filter:blur(var(--g-blur)) saturate(185%) brightness(1.06);-webkit-backdrop-filter:blur(var(--g-blur)) saturate(185%) brightness(1.06);box-shadow:var(--g-shadow)}
+/* diagonal specular sheen + a soft inner rim: the two cues that make glass read as glass */
+.glass > .sheen{position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:-1;
+  background:linear-gradient(135deg,rgba(255,255,255,.11) 0%,rgba(255,255,255,.03) 26%,transparent 52%,rgba(255,255,255,.035) 100%)}
+.glass:not(.nosheen)::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.06),inset 0 14px 34px -22px rgba(255,255,255,.5)}
+.glass::before{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:var(--g-inner);pointer-events:none}
+.glass.soft{background:var(--g-fill-2)}.glass.deep{background:rgba(10,18,32,.42)}.glass.pad{padding:20px}
+.glass.lit::after{content:"";position:absolute;left:12%;right:12%;top:-1px;height:1px;border-radius:2px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);pointer-events:none}
+.free{text-shadow:0 2px 16px rgba(0,0,0,.72)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--f-b);font-weight:650;font-size:13.5px;padding:10px 16px;border-radius:12px;cursor:pointer;transition:transform .18s cubic-bezier(.2,.8,.25,1),background .2s,box-shadow .2s;background:rgba(255,255,255,.10);color:#fff;border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(12px)}
+.btn:hover{background:rgba(255,255,255,.17);transform:translateY(-1px)}
+.btn:active{transform:translateY(0) scale(.985)}
+.btn-solar{background:var(--solar);color:#1A1400;border-color:transparent;box-shadow:0 6px 22px rgba(254,222,39,.28)}
+.btn-solar:hover{background:#FFE84F;box-shadow:0 10px 30px rgba(254,222,39,.36)}
+.btn-ghost{background:transparent;border-color:rgba(255,255,255,.20)}
+.btn-sm{padding:7px 12px;font-size:12.5px;border-radius:10px}.btn-lg{padding:14px 24px;font-size:15px;border-radius:14px}
+.ic{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.ic-sm{width:14px;height:14px}.ic-lg{width:22px;height:22px}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:650;padding:4px 10px;border-radius:100px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.15);color:var(--ink-2);white-space:nowrap}
+.chip-solar{background:rgba(254,222,39,.16);border-color:rgba(254,222,39,.34);color:#FFE874}
+.chip-green{background:rgba(21,154,99,.18);border-color:rgba(21,154,99,.36);color:#5FE0A8}
+.chip-amber{background:rgba(222,140,0,.18);border-color:rgba(222,140,0,.36);color:#F5BB5C}
+.chip-red{background:rgba(217,58,43,.18);border-color:rgba(217,58,43,.38);color:#FF9086}
+.chip-teal{background:rgba(14,140,140,.18);border-color:rgba(14,140,140,.36);color:#63DCDC}
+.chip-violet{background:rgba(108,75,214,.20);border-color:rgba(108,75,214,.4);color:#BBA8FF}
+.dot{width:7px;height:7px;border-radius:50%;background:currentColor;flex:none}
+.dot.live{animation:pulse 2.2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
+.mono-code{font-family:var(--f-m);font-size:12.5px;font-weight:600;padding:3px 9px;border-radius:8px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14);color:#CFE0FF}
+.mono-code.none{background:rgba(222,140,0,.16);border-color:rgba(222,140,0,.36);color:#F5BB5C}
+.big{font-family:var(--f-d);font-weight:600;font-size:40px;line-height:1;letter-spacing:-.03em}
+.mid{font-family:var(--f-d);font-weight:600;font-size:26px;line-height:1.05;letter-spacing:-.02em}
+.meter{height:6px;border-radius:100px;background:rgba(255,255,255,.13);overflow:hidden}
+.meter > i{display:block;height:100%;border-radius:100px;background:linear-gradient(90deg,#7FA3CE,#fff);width:0;transition:width 1.5s cubic-bezier(.2,.85,.25,1)}
+.meter.solar>i{background:linear-gradient(90deg,var(--solar-deep),var(--solar))}
+.meter.green>i{background:linear-gradient(90deg,#0E7A4E,#3FD48F)}
+.meter.amber>i{background:linear-gradient(90deg,#A56500,#F5BB5C)}
+.meter.thick{height:9px}
+.rise{opacity:0;transform:translateY(14px) scale(.985)}
+.rise.in{opacity:1;transform:none;transition:opacity .62s cubic-bezier(.2,.8,.25,1),transform .62s cubic-bezier(.2,.8,.25,1)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01ms!important}}
+
+/* sheen element fallback for pages that inject it */
+.sheen{position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:-1;
+  background:linear-gradient(135deg,rgba(255,255,255,.11) 0%,rgba(255,255,255,.03) 26%,transparent 52%,rgba(255,255,255,.035) 100%)}
+
+/* ============ patterns harvested from the X reference set ============ */
+/* A#1 · shell-as-frosted-sheet over the wallpaper, so the wallpaper frames the app */
+.sheet{position:relative;z-index:10;margin:14px;border-radius:28px;overflow:hidden;
+  background:rgba(13,26,48,.34);border:1px solid rgba(255,255,255,.14);
+  backdrop-filter:blur(20px) saturate(160%);-webkit-backdrop-filter:blur(20px) saturate(160%);
+  box-shadow:0 30px 90px rgba(3,8,18,.55),inset 0 1px 0 rgba(255,255,255,.18)}
+/* C#10 · asymmetric hover lift: 180ms in, 300ms out — reads snappier */
+.lift{transition:transform 300ms ease-in,box-shadow 300ms ease-in,border-color 300ms ease-in}
+.lift:hover{transform:translateY(-4px);border-color:rgba(254,222,39,.42);
+  box-shadow:0 6px 14px rgba(3,8,18,.3),0 26px 60px rgba(3,8,18,.5);transition-duration:180ms}
+/* C#5 · hotspot pulse — the solar accent's signature job */
+.hot{position:relative;width:9px;height:9px;border-radius:50%;background:var(--solar);flex:none}
+.hot::after{content:"";position:absolute;inset:-3px;border-radius:50%;border:1.5px solid var(--solar);
+  animation:hotpulse 1600ms ease-out infinite}
+@keyframes hotpulse{0%{transform:scale(.8);opacity:.7}100%{transform:scale(2.4);opacity:0}}
+/* B#7 · hairline rules instead of borders on dense lists */
+.hair{border-bottom:1px solid rgba(255,255,255,.07)}
+.hair:last-child{border-bottom:0}
+/* C#7 · filter pill with a glow on select */
+.fpill{padding:6px 13px;border-radius:999px;font-size:12.5px;font-weight:650;cursor:pointer;
+  background:rgba(0,0,0,.32);border:1px solid rgba(255,255,255,.24);color:var(--ink-2);transition:.2s ease-out}
+.fpill:hover{color:#fff;border-color:rgba(255,255,255,.4)}
+.fpill.on{background:rgba(254,222,39,.18);border-color:rgba(254,222,39,.55);color:#FFE874;
+  box-shadow:0 0 12px rgba(254,222,39,.35)}
+/* B#12 / C#9 · gradient-on-type for hero words only */
+.gword{background:linear-gradient(100deg,#fff 0%,#FFE874 46%,#FEDE27 60%,#fff 100%);-webkit-background-clip:text;
+  background-clip:text;color:transparent;background-size:220% 100%;animation:shimmer 7s ease-in-out infinite}
+@keyframes shimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+/* C#8 · atmosphere specks */
+.specks{position:absolute;inset:0;pointer-events:none;z-index:1}
+.specks i{position:absolute;width:3px;height:3px;border-radius:50%;background:rgba(254,222,39,.5);
+  animation:rise 12s linear infinite}
+@keyframes rise{from{transform:translateY(12px);opacity:0}12%{opacity:.75}to{transform:translateY(-26px);opacity:0}}

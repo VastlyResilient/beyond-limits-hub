@@ -1,0 +1,151 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Beyond Limits — Midnight (built to the Authkit system)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ===== Authkit design system, applied verbatim =====
+   canvas #05060f · Steel Plate #2f343e surfaces · Glass Edge rgba(186,215,247,.12) hairlines
+   Luminous Fill rgba(199,211,234,.12) badges · Frost Glow #d1e4fa primary text
+   Moon Mist #c7d3ea body · Fog Veil #9da7ba muted · Blueprint Blue #b6d9fc decorative
+   Void Violet #663af3 — the ONE chromatic accent, primary CTA only
+   radius: 9999px circular · 999px interactive · 16px cards · 6px badges+inputs
+   elevation: inset frost highlight + soft outer halo, NEVER a plain drop shadow
+   type: Space Grotesk 500 44-48px (aeonikPro sub) · Inter (Untitled Sans sub) · mono eyebrows 15px ls .10em */
+:root{
+  --canvas:#05060f; --plate:#2f343e; --glass-edge:rgba(186,215,247,.12); --lum:rgba(199,211,234,.12);
+  --frost:#d1e4fa; --mist:#c7d3ea; --veil:#9da7ba; --violet:#663af3; --blueprint:#b6d9fc; --grid:#3f4959;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--canvas);color:var(--mist);font-family:'Inter',system-ui,sans-serif;
+  font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+/* the faint blueprint grid the system describes */
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+  background-image:linear-gradient(rgba(63,73,89,.30) 1px,transparent 1px),linear-gradient(90deg,rgba(63,73,89,.30) 1px,transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(120% 80% at 50% 0%,#000 20%,transparent 78%);
+  -webkit-mask-image:radial-gradient(120% 80% at 50% 0%,#000 20%,transparent 78%)}
+/* ambient glow behind the hero wordmark */
+.glow{position:fixed;left:50%;top:-160px;width:900px;height:520px;transform:translateX(-50%);z-index:0;pointer-events:none;
+  background:radial-gradient(closest-side,rgba(102,58,243,.20),rgba(182,217,252,.07) 55%,transparent 78%)}
+.wrap{width:min(1200px,92vw);margin:0 auto;position:relative;z-index:2}
+h1,h2,h3{font-family:'Space Grotesk',system-ui,sans-serif;font-weight:500;margin:0;letter-spacing:-.01em;line-height:1.14;color:var(--frost)}
+h1{font-size:clamp(38px,4.6vw,48px);line-height:1.17}
+h2{font-size:28px}h3{font-size:19px;color:var(--frost)}
+.skywash{background:linear-gradient(180deg,#d8ecf8 0%,#98c0ef 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:400;letter-spacing:.10em;text-transform:uppercase;color:var(--veil)}
+.body{color:var(--mist)}.muted{color:var(--veil)}
+.caption{font-size:14px;line-height:1.43}
+/* glass plate: inset frost highlight + soft halo, no plain drop shadow */
+.plate{position:relative;background:var(--plate);border:1px solid var(--glass-edge);border-radius:16px;padding:24px;
+  box-shadow:inset 0 1px 0 rgba(216,236,248,.20), inset 0 0 34px rgba(216,236,248,.05), 0 20px 50px rgba(63,73,89,.55)}
+.plate.deep{background:rgba(5,6,15,.72);backdrop-filter:blur(14px)}
+.plate.lit{box-shadow:inset 0 1px 0 rgba(216,236,248,.30), inset 0 0 44px rgba(216,236,248,.07), 0 26px 64px rgba(63,73,89,.6)}
+/* buttons: 999px interactive radius */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:'Inter';font-weight:500;font-size:15px;
+  padding:13px 24px;border-radius:999px;border:1px solid var(--glass-edge);background:var(--plate);color:var(--frost);
+  cursor:pointer;transition:.18s cubic-bezier(.2,.8,.25,1);box-shadow:inset 0 1px 0 rgba(216,236,248,.16)}
+.btn:hover{border-color:rgba(186,215,247,.3);transform:translateY(-1px)}
+.btn-violet{background:var(--violet);border-color:transparent;color:#fff;box-shadow:0 10px 30px rgba(102,58,243,.42), inset 0 1px 0 rgba(255,255,255,.22)}
+.btn-violet:hover{filter:brightness(1.07);box-shadow:0 14px 38px rgba(102,58,243,.5)}
+.btn-lg{padding:16px 30px;font-size:16px}
+/* badges 6px, inputs 6px */
+.badge{display:inline-flex;align-items:center;gap:7px;border-radius:6px;background:var(--lum);border:1px solid var(--glass-edge);
+  padding:5px 11px;font-size:13px;font-weight:500;color:var(--frost)}
+.icon{width:42px;height:42px;border-radius:9999px;display:grid;place-items:center;flex:none;
+  background:var(--lum);border:1px solid var(--glass-edge);color:var(--blueprint)}
+code,.code{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.01em;color:var(--blueprint)}
+/* nav */
+.nav{display:flex;align-items:center;gap:30px;padding:22px 0}
+.nav a{font-size:15px;color:var(--veil);text-decoration:none;transition:color .18s;font-weight:400}
+.nav a:hover{color:var(--frost)}
+.nav a.on{color:var(--frost);position:relative}
+.nav a.on::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1px;background:linear-gradient(90deg,transparent,var(--blueprint),transparent)}
+.rule{height:1px;background:linear-gradient(90deg,transparent,rgba(186,215,247,.22),transparent);border:0;margin:0}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:1.35fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}
+@media(max-width:1000px){.g2,.g3{grid-template-columns:1fr}.band{grid-template-columns:1fr 1fr!important}}
+.row{display:flex;align-items:center;gap:16px}.spacer{margin-left:auto}
+.band{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--glass-edge);border-bottom:1px solid var(--glass-edge);margin-top:56px}
+.band > div{padding:30px 26px;border-right:1px solid var(--glass-edge)}
+.band > div:last-child{border-right:0}
+.num{font-family:'Space Grotesk';font-weight:500;font-size:36px;line-height:1;letter-spacing:-.02em;color:var(--frost)}
+.li{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;padding:20px 0;border-bottom:1px solid var(--glass-edge)}
+.li:last-child{border-bottom:0}
+.bar{height:4px;border-radius:999px;background:rgba(186,215,247,.14);overflow:hidden}
+.bar > i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#98c0ef,#d8ecf8);width:0;transition:width 1.3s cubic-bezier(.2,.85,.25,1)}
+</style></head><body>
+<div class="glow"></div>
+<div class="wrap">
+  <nav class="nav">
+    <img src="brand/favicon.png" alt="" style="height:30px;width:30px;border-radius:9999px" onerror="this.style.display='none'">
+    <span style="font-family:'Space Grotesk';font-weight:500;font-size:17px;color:var(--frost)">Beyond&nbsp;Limits</span>
+    <div class="row spacer" style="gap:26px">
+      <a class="on" href="#">Overview</a><a href="#">Families</a><a href="#">Messages</a><a href="#">Attendance</a>
+      <span class="badge"><span style="width:6px;height:6px;border-radius:50%;background:#7ee0b0;display:inline-block"></span>Live</span>
+      <span class="icon" style="width:38px;height:38px;font-family:'Space Grotesk';font-size:13px">AS</span>
+    </div>
+  </nav>
+  <hr class="rule">
+
+  <section style="padding:76px 0 0;max-width:900px">
+    <div class="eyebrow">Wednesday · Long Ridge Road</div>
+    <h1 style="margin:22px 0 0">One hundred and four families<br>are still waiting for <span class="skywash">their code</span>.</h1>
+    <p class="body" style="margin:22px 0 0;max-width:60ch;font-size:17px">ParentSquare cannot onboard a family it cannot identify. Beyond Limits sits outside the district, so there is no school-assigned number to fall back on — the participant code is the only identifier these families will ever have.</p>
+    <div class="row" style="gap:14px;margin-top:36px;flex-wrap:wrap">
+      <button class="btn btn-violet btn-lg" id="go">Issue all 104 codes</button>
+      <button class="btn btn-lg">Read the migration plan</button>
+      <span class="caption muted">Owner: Andy Sklover · Program Director</span>
+    </div>
+  </section>
+
+  <div class="band">
+    <div><div class="eyebrow">Families served</div><div class="num" style="margin-top:16px">113</div><div class="caption muted" style="margin-top:8px">across four tracks</div></div>
+    <div><div class="eyebrow">Codes issued</div><div class="num" style="margin-top:16px">9</div><div class="caption muted" style="margin-top:8px"><span class="code">BL-2026-0010</span> is next</div></div>
+    <div><div class="eyebrow">Agreements on file</div><div class="num" style="margin-top:16px">148</div><div class="caption muted" style="margin-top:8px">one per program joined</div></div>
+    <div><div class="eyebrow">Reach, last send</div><div class="num" style="margin-top:16px">94%</div><div class="caption muted" style="margin-top:8px">read within a day</div></div>
+  </div>
+
+  <div class="grid g2" style="margin-top:40px;align-items:start">
+    <section class="plate lit">
+      <div class="row"><div class="eyebrow">Awaiting your call</div><span class="badge spacer">4 open</span></div>
+      <div style="margin-top:18px">
+        <div class="li"><div class="row" style="gap:14px"><span class="icon">R</span><div><h3>Annabella Rojas — which record survives?</h3><div class="caption muted" style="margin-top:5px">Main 8 Nov 2024 · SCSE 5 Dec 2024 · same date of birth, two codes issued</div></div></div><button class="btn" style="padding:10px 20px">Decide</button></div>
+        <div class="li"><div class="row" style="gap:14px"><span class="icon">L</span><div><h3>Anthony Lopez — three submissions, two tracks</h3><div class="caption muted" style="margin-top:5px">Main twice, plus a Starfish row copied from the second</div></div></div><button class="btn" style="padding:10px 20px">Decide</button></div>
+        <div class="li"><div class="row" style="gap:14px"><span class="icon">S</span><div><h3>Starfish tab needs restructuring</h3><div class="caption muted" style="margin-top:5px">Four rows pasted by hand; the real header sits at row 10</div></div></div><button class="btn" style="padding:10px 20px">Fix</button></div>
+        <div class="li"><div class="row" style="gap:14px"><span class="icon">M</span><div><h3>Bilal Morales has missed five sessions</h3><div class="caption muted" style="margin-top:5px">Texts sent automatically — this is the human follow-up</div></div></div><button class="btn" style="padding:10px 20px">Call</button></div>
+      </div>
+    </section>
+
+    <div class="grid" style="gap:16px">
+      <section class="plate">
+        <div class="eyebrow">Code coverage</div>
+        <div class="row" style="align-items:flex-end;gap:12px;margin-top:14px"><div class="num" style="font-size:44px">8%</div><div class="caption muted" style="padding-bottom:6px">9 of 113 families</div></div>
+        <div class="bar" style="margin-top:18px"><i data-w="8%"></i></div>
+        <div class="caption muted" style="margin-top:10px">One series for the whole program. The program lives in its own column, so a code never changes when a family moves track.</div>
+      </section>
+      <section class="plate">
+        <div class="eyebrow">Today at Long Ridge Road</div>
+        <div style="margin-top:16px">
+          <div class="li" style="grid-template-columns:64px 1fr auto;padding:14px 0"><span class="code">3:30</span><span style="color:var(--frost)">Tutoring block</span><span class="caption muted">6 scholars</span></div>
+          <div class="li" style="grid-template-columns:64px 1fr auto;padding:14px 0"><span class="code">4:15</span><span style="color:var(--frost)">Horizons lab</span><span class="caption muted">4 scholars</span></div>
+          <div class="li" style="grid-template-columns:64px 1fr auto;padding:14px 0"><span class="code">6:00</span><span style="color:var(--frost)">SCSE family night</span><span class="badge">17 families</span></div>
+        </div>
+      </section>
+      <section class="plate" style="border-color:rgba(182,217,252,.24)">
+        <div class="eyebrow" style="color:var(--blueprint)">A quiet risk</div>
+        <p class="body" style="margin:14px 0 0;font-size:15px">The roster and the code script live on a personal Google account. Ownership can be transferred, but the triggers must be recreated — otherwise generation stops without a sound.</p>
+        <button class="btn" style="margin-top:20px">Begin the transfer</button>
+      </section>
+    </div>
+  </div>
+
+  <div style="margin-top:64px"><hr class="rule">
+    <div class="caption muted" style="margin-top:20px">Beyond Limits Academic Program · a program of the Stamford Peace Youth Foundation · free tutoring, grades 4–10</div>
+  </div>
+  <div style="height:80px"></div>
+</div>
+<script>
+setTimeout(()=>{document.querySelectorAll('.bar > i').forEach((el,i)=>{const w=el.dataset.w;setTimeout(()=>el.style.width=w,i*140);});},220);
+document.getElementById('go').onclick=e=>{e.target.textContent='104 issued ✓';e.target.style.background='#3f9101';};
+</script></body></html>

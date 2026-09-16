@@ -1,0 +1,81 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Beyond Limits — Paper · ElevenLabs design system</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#000;--ink-2:#44403b;--ink-3:#777169;--ink-4:#a59f97;--line:#ddd9d3;--hair:#ebe8e4;
+  --bg:#faf7f2;--card:#fff;--soft:#f4f1ec;--accent:#183868;--accent2:#F5C842;--r:20px}
+*{box-sizing:border-box} body{margin:0;font-family:'Inter',system-ui,sans-serif;font-size:15px;line-height:1.6;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+h1,h2,h3{margin:0;font-weight:650;letter-spacing:-.022em;line-height:1.08;color:var(--ink)}
+.wrap{width:min(1380px,93vw);margin:0 auto}
+.card{background:var(--card);border:1px solid var(--hair);border-radius:var(--r);padding:32px;transition:box-shadow .2s}
+.card.flat{padding:0}
+.mono{font-family:ui-monospace,SFMono-Regular,monospace;font-size:12.5px;letter-spacing:.01em}
+.eyebrow{font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.txs{font-size:12.5px}.tsm{font-size:13.5px}.muted{color:var(--ink-3)}.muted2{color:var(--ink-4)}
+.row{display:flex;align-items:center;gap:13px}.spacer{margin-left:auto}
+.btn{padding:11px 18px;border-radius:999px;border:1px solid transparent;font:inherit;font-family:'Inter',sans-serif;font-weight:620;font-size:13.5px;cursor:pointer;transition:.15s}
+.btn-solid{background:var(--accent);color:#fff}
+.btn-soft{background:var(--soft);border-color:var(--hair);color:var(--ink-2)}
+.btn-soft:hover{background:#eae5de}
+.btn-ghost{background:transparent;color:var(--ink-3)}
+.btn-accent{background:var(--accent2);color:#1A1400;font-weight:650}
+.chip{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:550;padding:3px 10px;border-radius:999px;background:var(--soft);border:1px solid var(--hair);color:var(--ink-3)}
+.meter{height:8px;border-radius:var(--r);background:var(--hair);overflow:hidden}
+.meter>i{display:block;height:100%;border-radius:var(--r);background:var(--accent);width:0;transition:width 1.2s cubic-bezier(.2,.85,.25,1)}
+.meter.gold>i{background:var(--accent2)}
+.col2{display:grid;grid-template-columns:1.55fr 1fr;gap:28px}
+@media(max-width:1000px){.col2{grid-template-columns:1fr}}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.li{display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--hair)}
+.li:last-child{border-bottom:0}
+</style></head><body>
+<header style="padding:26px 0 22px;border-bottom:1px solid var(--hair)"><div class="wrap row">
+  <div class="row" style="gap:11px"><div style="width:34px;height:34px;border-radius:9px;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:700;font-size:13px">BL</div>
+    <div><div style="font-weight:650;font-size:15px">Beyond Limits</div><div class="txs muted2">Academic Program</div></div></div>
+  <nav class="spacer row" style="gap:32px">
+    <a href="#" style="font-size:13.5px;font-weight:500;color:var(--ink)">Overview</a>
+    <a href="#" style="font-size:13.5px;font-weight:500;color:var(--ink-3)">Families</a>
+    <a href="#" style="font-size:13.5px;font-weight:500;color:var(--ink-3)">Messages</a>
+    <a href="#" style="font-size:13.5px;font-weight:500;color:var(--ink-3)">Attendance</a>
+  </nav>
+  <div class="row" style="gap:9px"><span class="chip"><span class="dot" style="background:#2E8A5B"></span>Synced</span>
+    <div style="width:34px;height:34px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-weight:650;font-size:12px">AS</div></div>
+</div></header>
+
+<div class="wrap" style="padding:50px 0 100px">
+  <div class="eyebrow" style="margin-bottom:16px">Wednesday, 16 September · Long Ridge Road</div>
+  <h1 style="font-size:clamp(36px,4.8vw,60px);max-width:16ch">Good morning, Andy. <span style="color:var(--accent2)">104 families</span> are waiting for a code.</h1>
+  <p style="font-size:15.5px;color:var(--ink-3);max-width:60ch;margin:18px 0 0">ParentSquare cannot identify a family without a number, and Beyond Limits sits outside the school district. The programme identifier is ours — and it has to be on every family before the migration goes anywhere.</p>
+  <div class="row" style="gap:14px;margin-top:28px"><button class="btn btn-accent" style="padding:15px 26px;font-size:15px">Issue the 104 codes</button>
+    <button class="btn btn-soft" style="padding:15px 26px;font-size:15px">Read the migration plan</button></div>
+
+  <div class="g3" style="margin-top:44px">
+    <div class="card" style="padding:28px"><div class="eyebrow">Families served</div><div style="font-size:42px;font-weight:650;line-height:1;margin:14px 0 4px;color:var(--accent)">113</div><div class="tsm muted">active across four tracks</div></div>
+    <div class="card" style="padding:28px"><div class="eyebrow">Codes issued</div><div style="font-size:42px;font-weight:650;line-height:1;margin:14px 0 4px">9</div><div class="tsm muted">of 113 · next BL-2026-0010</div><div class="meter gold" style="margin-top:20px"><i data-w="8%"></i></div></div>
+    <div class="card" style="padding:28px"><div class="eyebrow">Reach, last send</div><div style="font-size:42px;font-weight:650;line-height:1;margin:14px 0 4px">94<span style="font-size:22px;color:var(--ink-3)">%</span></div><div class="tsm muted">read within the day</div><div class="meter" style="margin-top:20px"><i data-w="94%"></i></div></div>
+  </div>
+
+  <div class="col2" style="margin-top:28px">
+    <div class="card flat"><div style="padding:30px 30px 22px"><div class="eyebrow">Families awaiting a code or a decision</div><span class="chip" style="margin-left:12px">104</span></div>
+      <div style="padding:0 30px 30px">
+        <div class="li"><div style="flex:1"><div style="font-weight:620;font-size:14px">Shalauddin, Ethan <span class="chip" style="margin-left:8px">duplicate</span></div><div class="txs muted">Grade 7 · Main + SCSE</div></div><span class="mono" style="font-weight:600;color:var(--ink)">BL-2026-0002</span></div>
+        <div class="li"><div style="flex:1"><div style="font-weight:620;font-size:14px">Rojas, Annabella</div><div class="txs muted">Grade 5 · Main + SCSE</div></div><button class="btn btn-soft">Decide</button></div>
+        <div class="li"><div style="flex:1"><div style="font-weight:620;font-size:14px">Lopez, Anthony</div><div class="txs muted">Grade 9 · Main + Starfish</div></div><span class="mono muted">needs a code</span></div>
+        <div class="li"><div style="flex:1"><div style="font-weight:620;font-size:14px">Lopez, Mia</div><div class="txs muted">Grade 6 · Main</div></div><span class="mono muted">needs a code</span></div>
+        <div class="li"><div style="flex:1"><div style="font-weight:620;font-size:14px">Rivas, Danna</div><div class="txs muted">Grade 8 · Main</div></div><span class="mono muted">needs a code</span></div>
+        <div class="row txs muted" style="margin-top:18px"><span>Showing 5 of 104</span><span class="spacer">Last export 7 September</span></div>
+      </div></div>
+
+    <div style="display:grid;gap:28px">
+      <div class="card" style="padding:28px"><div class="eyebrow">Needs you</div>
+        <div class="li"><div style="font-weight:620;font-size:13.5px">Two families to decide</div><div class="txs muted spacer">Rojas · Lopez</div></div>
+        <div class="li"><div style="font-weight:620;font-size:13.5px">Starfish tab structure</div><div class="txs muted spacer">Four rows pasted</div></div>
+        <div class="li"><div style="font-weight:620;font-size:13.5px">Two scholars have drifted</div><div class="txs muted spacer">5+ missed sessions</div></div></div>
+      <div class="card" style="padding:28px;background:var(--accent)"><div class="eyebrow" style="color:rgba(255,255,255,.55)">Ownership</div>
+        <div class="tsm" style="color:rgba(255,255,255,.82);margin-top:12px">The roster and the code script still sit on a personal Google account. Moving them does not carry the triggers.</div>
+        <button class="btn" style="margin-top:18px;background:rgba(255,255,255,.14);color:#fff;border-color:rgba(255,255,255,.22)">Begin the transfer</button></div>
+    </div>
+  </div>
+  <div style="margin-top:32px;font-size:12px;color:var(--ink-4)">Beyond Limits Academic Program · a programme of the Stamford Peace Youth Foundation · free tutoring, grades 4–10</div>
+</div>
+<script>setTimeout(()=>{document.querySelectorAll('.meter>i').forEach((e,i)=>{let w=e.dataset.w;setTimeout(()=>{e.style.width=w;},i*140);});},300);</script></body></html>

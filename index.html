@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="./brand/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beyond Limits Hub — Powering Every Learner</title>
+    <meta name="description" content="Beyond Limits Hub is the family, tutor and student engagement platform built exclusively for the Beyond Limits Academic Program of Stamford Peace Youth Foundation." />
+    <meta property="og:title" content="Beyond Limits Hub" />
+    <meta property="og:description" content="One place for sessions, progress, forms, payments and family communication." />
+    <meta name="theme-color" content="#0A1220" />
+  </head>
+  <body>
+    <script>
+      /* Paint the saved theme before React mounts, so there is no flash. */
+      (function () {
+        try {
+          var raw = localStorage.getItem("bl.theme.v2.props");
+          if (!raw) return;
+          var p = JSON.parse(raw), r = document.documentElement.style;
+          for (var k in p) { if (k.charAt(0) === "-") r.setProperty(k, p[k]); }
+          if (p["--paper"]) document.documentElement.style.backgroundColor = p["--paper"];
+        } catch (e) {}
+      })();
+    </script>
+
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

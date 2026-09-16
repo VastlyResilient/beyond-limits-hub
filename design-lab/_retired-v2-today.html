@@ -1,0 +1,150 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Beyond Limits — Variation 2 · Today</title>
+<link rel="stylesheet" href="lab.css">
+<style>
+/* Deliberately NOT a dashboard: one page, one job, three tabs. */
+.shell{position:relative;z-index:10;max-width:1180px;margin:0 auto;padding:22px 22px 60px}
+.tabs{display:inline-flex;gap:4px;padding:5px;border-radius:16px;background:rgba(255,255,255,.07);border:1px solid var(--g-stroke);backdrop-filter:blur(20px)}
+.tabs button{border:0;background:transparent;color:var(--ink-3);font:inherit;font-family:var(--f-b);font-weight:650;font-size:13.5px;
+  padding:9px 20px;border-radius:12px;cursor:pointer;transition:.2s}
+.tabs button.on{background:rgba(255,255,255,.94);color:#0A1220;box-shadow:0 6px 18px rgba(0,0,0,.28)}
+.tabs button:hover:not(.on){color:#fff}
+.hello{font-family:var(--f-d);font-size:clamp(30px,4.4vw,52px);font-weight:600;letter-spacing:-.035em;line-height:1.02;margin:30px 0 12px}
+.act{display:grid;grid-template-columns:1fr auto;gap:26px;align-items:center;padding:30px 32px;border-radius:26px;position:relative;overflow:hidden}
+.act.primary{background:linear-gradient(135deg,rgba(254,222,39,.20),rgba(254,222,39,.05));border-color:rgba(254,222,39,.34)}
+.act h2{font-size:clamp(21px,2.3vw,29px);margin-bottom:7px}
+.steps{display:grid;gap:14px;margin-top:18px}
+.step{display:grid;grid-template-columns:52px 1fr auto;gap:18px;align-items:center;padding:22px 22px;border-radius:20px;cursor:pointer;transition:.22s}
+.step:hover{transform:translateX(4px);background:rgba(255,255,255,.11)}
+.step .n{font-family:var(--f-d);font-size:24px;font-weight:600;color:var(--solar);text-align:center}
+.timeline{position:relative;padding-left:26px}
+.timeline::before{content:"";position:absolute;left:8px;top:8px;bottom:8px;width:1.5px;background:linear-gradient(180deg,rgba(255,255,255,.32),rgba(255,255,255,.06))}
+.tl{position:relative;padding:0 0 26px}
+.tl::before{content:"";position:absolute;left:-22px;top:6px;width:11px;height:11px;border-radius:50%;background:var(--solar);box-shadow:0 0 0 4px rgba(254,222,39,.18)}
+.tl.done::before{background:#3FD48F;box-shadow:0 0 0 4px rgba(63,212,143,.16)}
+.tl.next::before{background:#fff}
+.g2{display:grid;grid-template-columns:1.14fr .86fr;gap:18px;align-items:start}
+@media(max-width:920px){.g2{grid-template-columns:1fr}.step{grid-template-columns:40px 1fr}.act{grid-template-columns:1fr}}
+.msg{display:flex;gap:12px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.07)}
+.msg:last-child{border-bottom:0}
+.av{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;font-family:var(--f-d);font-weight:700;font-size:13px;flex:none}
+</style></head><body>
+<div class="wall dim"><img src="walls/v3.jpg" alt=""><div class="scrim heavy"></div><div class="grain"></div></div>
+
+<div class="shell">
+  <header class="row rise">
+    <img src="brand/favicon.png" alt="" style="height:30px;width:30px;border-radius:9px" onerror="this.style.display='none'">
+    <span style="font-family:var(--f-d);font-weight:700;font-size:16px">Beyond Limits</span>
+    <span class="chip">Ops</span>
+    <div class="spacer"></div>
+    <nav class="tabs">
+      <button class="on">Today</button><button>Families</button><button>Send</button>
+    </nav>
+    <div style="width:36px;height:36px;border-radius:12px;background:linear-gradient(140deg,#FEDE27,#E8B400);color:#1A1400;display:grid;place-items:center;font-family:var(--f-d);font-weight:700;font-size:13px;margin-left:12px">AS</div>
+  </header>
+
+  <div class="row" style="align-items:flex-end;margin-top:6px">
+    <div>
+      <div class="eyebrow rise">Wednesday 16 September · Long Ridge Road</div>
+      <h1 class="hello rise">Three things<br>need you today.</h1>
+      <div class="tsm muted rise" style="max-width:52ch">Everything else is handled automatically. This is only what a person has to decide.</div>
+    </div>
+    <div class="spacer"></div>
+    <div class="glass pad lift rise" style="min-width:190px">
+      <div class="eyebrow">Code coverage</div>
+      <div class="row" style="align-items:flex-end;gap:8px;margin:6px 0 8px"><div class="mid" id="cov">8%</div><div class="txs muted2" style="padding-bottom:4px">of families</div></div>
+      <div class="meter solar thick"><i data-w="8%"></i></div>
+    </div>
+  </div>
+
+  <div class="g2" style="margin-top:26px">
+    <div style="display:grid;gap:16px">
+      <section class="glass lit act primary rise">
+        <div>
+          <span class="chip" style="margin-bottom:11px;border-color:rgba(254,222,39,.5);color:#FFE874">The one that blocks everything</span>
+          <h2>104 families have no participant code</h2>
+          <div class="tsm" style="color:rgba(255,255,255,.8);max-width:56ch">ParentSquare cannot onboard a family it cannot identify, and there is no school-assigned number to fall back on. Until these are issued the migration is stuck.</div>
+        </div>
+        <button class="btn btn-solar btn-lg" id="issueBtn">Issue all 104 →</button>
+      </section>
+
+      <section class="glass pad rise">
+        <div class="eyebrow" style="margin-bottom:14px">Then, in this order</div>
+        <div class="steps">
+          <div class="step glass soft lift">
+            <div class="n">2</div>
+            <div><div style="font-weight:700;font-size:15px">Two families need your call</div>
+              <div class="tsm muted" style="margin-top:3px">Annabella Rojas and Anthony Lopez each signed twice. Pick which record survives — both signatures stay on file.</div></div>
+            <span class="chip chip-red">Decide</span>
+          </div>
+          <div class="step glass soft lift">
+            <div class="n">3</div>
+            <div><div style="font-weight:700;font-size:15px">The Starfish tab is still broken</div>
+              <div class="tsm muted" style="margin-top:3px">Four rows were pasted in by hand; the real header sits at row 10. One click to fix.</div></div>
+            <span class="chip chip-amber">Fix</span>
+          </div>
+          <div class="step glass soft lift">
+            <div class="n">4</div>
+            <div><div style="font-weight:700;font-size:15px">Two scholars have drifted</div>
+              <div class="tsm muted" style="margin-top:3px">Bilal Morales (5 missed) and Anthony Lopez (4 missed) crossed your threshold. Texts are out; these are the human follow-ups.</div></div>
+            <span class="chip chip-amber">Watch</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="glass pad rise">
+        <div class="eyebrow" style="margin-bottom:16px">Today's sessions</div>
+        <div class="timeline">
+          <div class="tl done"><div class="row"><div><div style="font-weight:650;font-size:14.5px">Morning office block</div><div class="tsm muted2">Paperwork, calls returned</div></div><span class="chip chip-green spacer">done</span></div></div>
+          <div class="tl next"><div class="row"><div><div style="font-weight:650;font-size:14.5px">3:30pm · Tutoring block</div><div class="tsm muted2">Rooms A–F · Maya R., Priya N., Grace T.</div></div><span class="chip spacer">6 scholars</span></div></div>
+          <div class="tl"><div class="row"><div><div style="font-weight:650;font-size:14.5px">4:15pm · Horizons lab</div><div class="tsm muted2">Room B · Daniel O.</div></div><span class="chip spacer">4 scholars</span></div></div>
+          <div class="tl"><div class="row"><div><div style="font-weight:650;font-size:14.5px">6:00pm · SCSE family night</div><div class="tsm muted2">Lounge · translators on site</div></div><span class="chip spacer">17 families</span></div></div>
+        </div>
+      </section>
+    </div>
+
+    <div style="display:grid;gap:16px">
+      <section class="glass pad rise">
+        <div class="row" style="margin-bottom:6px"><div class="eyebrow">Families waiting on you</div><span class="chip spacer">4</span></div>
+        <div class="msg"><div class="av" style="background:rgba(108,75,214,.28);color:#CFC2FF">LR</div>
+          <div style="flex:1"><div class="row"><span class="tsm" style="font-weight:700">Lena R.</span><span class="txs muted2 spacer">12m</span></div>
+            <div class="tsm muted" style="margin-top:2px">“Amara came home proud about the worksheet — first time she's said maths went well.”</div></div></div>
+        <div class="msg"><div class="av" style="background:rgba(14,140,140,.28);color:#9BECEC">DM</div>
+          <div style="flex:1"><div class="row"><span class="tsm" style="font-weight:700">Diego M.</span><span class="txs muted2 spacer">1h</span></div>
+            <div class="tsm muted" style="margin-top:2px">Noah needs a Tuesday slot instead — can we move him?</div></div></div>
+        <div class="msg"><div class="av" style="background:rgba(222,140,0,.28);color:#F5BB5C">JR</div>
+          <div style="flex:1"><div class="row"><span class="tsm" style="font-weight:700">Jean-Baptiste M.</span><span class="txs muted2 spacer">2h</span></div>
+            <div class="tsm muted" style="margin-top:2px">Kreyòl version of the family-night notice — approved.</div></div></div>
+        <button class="btn btn-sm" style="width:100%;justify-content:center;margin-top:14px">Open inbox</button>
+      </section>
+
+      <section class="glass pad rise">
+        <div class="eyebrow" style="margin-bottom:12px">Last send · Remind retirement</div>
+        <div class="tsm muted" style="margin-bottom:14px">113 families · 4 languages · sent 2 September</div>
+        <div style="display:grid;gap:11px">
+          <div><div class="row txs" style="margin-bottom:5px"><span class="muted">Delivered</span><b class="spacer">97%</b></div><div class="meter green"><i data-w="97%"></i></div></div>
+          <div><div class="row txs" style="margin-bottom:5px"><span class="muted">Read within 24h</span><b class="spacer">94%</b></div><div class="meter"><i data-w="94%"></i></div></div>
+          <div><div class="row txs" style="margin-bottom:5px"><span class="muted">RSVP'd</span><b class="spacer">41</b></div><div class="meter solar"><i data-w="36%"></i></div></div>
+        </div>
+      </section>
+
+      <section class="glass pad rise" style="background:rgba(217,58,43,.10);border-color:rgba(217,58,43,.26)">
+        <div class="row" style="margin-bottom:9px"><svg class="ic ic-sm" viewBox="0 0 24 24" style="color:#FF9086"><path d="M12 9v4M12 17.5v.5M10.3 3.9L2.6 17a2 2 0 001.7 3h15.4a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/></svg><b class="tsm">Ownership risk</b></div>
+        <div class="tsm" style="color:rgba(255,255,255,.76)">The roster and code script live on a personal Google account. Transferring does not carry the triggers — they must be recreated, or code generation stops silently.</div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<script>
+setTimeout(()=>{document.querySelectorAll('.meter > i').forEach((el,i)=>{const w=el.dataset.w;setTimeout(()=>{el.style.width=w;},i*120);});},300);
+/* animate to the REAL number (8%), never a fake 100 */
+let n=0; const target=8, cov=document.getElementById('cov');
+const t=setInterval(()=>{n+=1; if(n>=target){n=target;clearInterval(t);} cov.textContent=n+'%';
+  document.querySelectorAll('.meter.solar > i').forEach(e=>e.style.width=n+'%');},34);
+document.getElementById('issueBtn').onclick=e=>{e.target.textContent='Issuing…';setTimeout(()=>{e.target.textContent='104 codes issued ✓';e.target.classList.add('release');},900);};
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.04});
+document.querySelectorAll('.rise').forEach((el,i)=>{el.style.transitionDelay=(i*40)+'ms';io.observe(el);});
+setTimeout(()=>document.querySelectorAll('.rise:not(.in)').forEach(e=>e.classList.add('in')),1500);
+</script></body></html>

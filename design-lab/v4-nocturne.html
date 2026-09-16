@@ -1,0 +1,88 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Beyond Limits — Nocturne</title>
+<link rel="stylesheet" href="dl.css">
+<style>
+:root{--bg:#0A1B33;--card:rgba(255,255,255,.045);--soft:rgba(255,255,255,.06);--line:rgba(255,255,255,.11);--line-2:rgba(255,255,255,.2);--tint:rgba(255,255,255,.05);
+  --ink:#F5F2EC;--ink-2:rgba(245,242,236,.78);--ink-3:rgba(245,242,236,.56);--ink-4:rgba(245,242,236,.4);
+  --brand:#F5F2EC;--accent:#D8B25E;--accent-strong:#D8B25E;--accent-soft:rgba(216,178,94,.14);--accent-line:rgba(216,178,94,.36);--accent-ink:#1A1405;--accent-ink2:#E7CE94}
+.card{backdrop-filter:blur(8px)}
+.hi{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(38px,5vw,64px);line-height:1.03;letter-spacing:-.02em;color:#F8F5EF}
+.hi em{font-style:italic;color:#D8B25E}
+.gold{color:#D8B25E}
+.hairline{height:1px;background:linear-gradient(90deg,transparent,rgba(216,178,94,.5),transparent);border:0}
+.band{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:40px}
+.band > div{padding:30px 26px;border-right:1px solid var(--line)}
+.band > div:last-child{border-right:0}
+@media(max-width:1000px){.band{grid-template-columns:1fr 1fr}.band>div:nth-child(2){border-right:0}.duo{grid-template-columns:1fr!important}}
+.duo{display:grid;grid-template-columns:1.3fr 1fr;gap:26px;margin-top:34px;align-items:start}
+.serif{font-family:'Instrument Serif',serif}
+.li{display:grid;grid-template-columns:1fr auto;gap:18px;padding:18px 0;border-bottom:1px solid var(--line);align-items:center}
+.li:last-child{border-bottom:0}
+.rune{width:46px;height:46px;border-radius:50%;border:1px solid rgba(216,178,94,.4);display:grid;place-items:center;font-family:'Instrument Serif';font-size:17px;color:#D8B25E;flex:none}
+</style></head><body>
+<div class="ground g-nocturne"></div>
+<div class="wrap" style="padding:26px 0 90px">
+  <header class="row">
+    <img src="brand/favicon.png" alt="" style="height:34px;width:34px;border-radius:10px" onerror="this.style.display='none'">
+    <div><div class="serif" style="font-size:19px;color:#F8F5EF">Beyond Limits</div><div class="txs gold" style="letter-spacing:.14em;font-size:10.5px">ACADEMIC PROGRAM</div></div>
+    <nav class="spacer row" style="gap:26px">
+      <a class="tsm" style="color:var(--ink-3)" href="#">Overview</a><a class="tsm" style="color:var(--ink-3)" href="#">Families</a>
+      <a class="tsm" style="color:var(--ink-3)" href="#">Messages</a><a class="tsm" style="color:var(--ink-3)" href="#">Migration</a>
+      <div class="serif" style="width:36px;height:36px;border-radius:50%;border:1px solid rgba(216,178,94,.45);display:grid;place-items:center;font-size:14px;color:#D8B25E">AS</div>
+    </nav>
+  </header>
+
+  <hr class="hairline" style="margin-top:34px">
+
+  <section class="rise" style="margin-top:54px;max-width:900px">
+    <div class="eyebrow gold">Wednesday, 16 September · Long Ridge Road</div>
+    <h1 class="hi" style="margin:20px 0 18px">One hundred and four families<br>are still waiting for <em>their code</em>.</h1>
+    <p class="tsm" style="color:var(--ink-3);max-width:62ch;font-size:15px">Everything in this program depends on a single identifier. Remind is retiring, ParentSquare cannot onboard a family without a number, and Beyond Limits sits outside the district — so the number has to be ours.</p>
+    <div class="row" style="gap:14px;margin-top:34px">
+      <button class="btn btn-accent btn-lg" style="font-weight:600">Issue all 104 codes</button>
+      <button class="btn btn-lg" style="background:transparent;border-color:rgba(255,255,255,.22);color:#F5F2EC">Read the migration plan</button>
+    </div>
+  </section>
+
+  <div class="band rise">
+    <div><div class="eyebrow">Families served</div><div class="num num-lg tnum" style="margin-top:14px">113</div><div class="txs" style="color:var(--ink-4);margin-top:6px">across four tracks</div></div>
+    <div><div class="eyebrow">Codes issued</div><div class="num num-lg tnum" style="margin-top:14px">9</div><div class="txs" style="color:var(--ink-4);margin-top:6px">next · BL-2026-0010</div></div>
+    <div><div class="eyebrow">Agreements on file</div><div class="num num-lg tnum" style="margin-top:14px">148</div><div class="txs" style="color:var(--ink-4);margin-top:6px">one per program joined</div></div>
+    <div><div class="eyebrow">Reach, last send</div><div class="num num-lg tnum" style="margin-top:14px">94<span style="font-size:19px;color:var(--ink-3)">%</span></div><div class="txs" style="color:var(--ink-4);margin-top:6px">read within a day</div></div>
+  </div>
+
+  <div class="duo">
+    <section class="card pad rise" style="border-radius:22px">
+      <div class="row"><div class="eyebrow gold">Awaiting your call</div><span class="chip spacer" style="background:rgba(216,178,94,.12);border-color:rgba(216,178,94,.34);color:#E7CE94">4 open</span></div>
+      <div style="margin-top:18px">
+        <div class="li"><div class="row" style="gap:16px"><span class="rune">R</span><div><div style="font-weight:500;font-size:14.5px;color:#F5F2EC">Annabella Rojas — which record survives?</div><div class="txs" style="color:var(--ink-4)">Main 8 Nov 2024 · SCSE 5 Dec 2024 · same date of birth, two codes</div></div></div><button class="btn btn-sm" style="background:transparent;border-color:rgba(255,255,255,.22);color:#F5F2EC">Decide</button></div>
+        <div class="li"><div class="row" style="gap:16px"><span class="rune">L</span><div><div style="font-weight:500;font-size:14.5px;color:#F5F2EC">Anthony Lopez — three submissions, two tracks</div><div class="txs" style="color:var(--ink-4)">Main twice, plus a Starfish row copied from the second</div></div></div><button class="btn btn-sm" style="background:transparent;border-color:rgba(255,255,255,.22);color:#F5F2EC">Decide</button></div>
+        <div class="li"><div class="row" style="gap:16px"><span class="rune">S</span><div><div style="font-weight:500;font-size:14.5px;color:#F5F2EC">Starfish tab needs restructuring</div><div class="txs" style="color:var(--ink-4)">Four rows pasted by hand; the real header sits at row 10</div></div></div><button class="btn btn-sm" style="background:transparent;border-color:rgba(255,255,255,.22);color:#F5F2EC">Fix</button></div>
+        <div class="li"><div class="row" style="gap:16px"><span class="rune">M</span><div><div style="font-weight:500;font-size:14.5px;color:#F5F2EC">Bilal Morales has missed five sessions</div><div class="txs" style="color:var(--ink-4)">Texts sent; this is the human follow-up</div></div></div><button class="btn btn-sm" style="background:transparent;border-color:rgba(255,255,255,.22);color:#F5F2EC">Call</button></div>
+      </div>
+    </section>
+
+    <div class="col" style="gap:26px">
+      <section class="card pad rise" style="border-radius:22px">
+        <div class="eyebrow gold">Today at Long Ridge Road</div>
+        <div style="margin-top:16px">
+          <div class="row" style="padding:13px 0;border-bottom:1px solid var(--line)"><span class="mono txs" style="color:var(--ink-4);width:48px">3:30</span><span style="flex:1;font-size:13.5px">Tutoring block</span><span class="txs" style="color:var(--ink-4)">six scholars</span></div>
+          <div class="row" style="padding:13px 0;border-bottom:1px solid var(--line)"><span class="mono txs" style="color:var(--ink-4);width:48px">4:15</span><span style="flex:1;font-size:13.5px">Horizons lab</span><span class="txs" style="color:var(--ink-4)">four scholars</span></div>
+          <div class="row" style="padding:13px 0"><span class="mono txs" style="color:var(--ink-4);width:48px">6:00</span><span style="flex:1;font-size:13.5px">SCSE family night</span><span class="chip" style="background:rgba(216,178,94,.12);border-color:rgba(216,178,94,.34);color:#E7CE94">17 families</span></div>
+        </div>
+      </section>
+      <section class="card pad rise" style="border-radius:22px;background:rgba(216,178,94,.08);border-color:rgba(216,178,94,.24)">
+        <div class="eyebrow gold">A quiet risk</div>
+        <div class="tsm" style="color:var(--ink-2);margin-top:12px">The roster and the code script live on a personal Google account. Ownership can be transferred, but the triggers must be recreated — otherwise generation stops without a sound.</div>
+        <button class="btn btn-sm" style="margin-top:18px;background:transparent;border-color:rgba(216,178,94,.45);color:#E7CE94">Begin the transfer</button>
+      </section>
+    </div>
+  </div>
+  <div style="margin-top:34px" class="rise"><hr class="hairline"><div class="txs" style="color:var(--ink-4);margin-top:16px">Beyond Limits Academic Program · a program of the Stamford Peace Youth Foundation · free tutoring, grades 4–10</div></div>
+</div>
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.04});
+document.querySelectorAll('.rise').forEach((el,i)=>{el.style.transitionDelay=(i*70)+'ms';io.observe(el);});
+setTimeout(()=>document.querySelectorAll('.rise:not(.in)').forEach(e=>e.classList.add('in')),1400);
+</script></body></html>
