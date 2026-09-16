@@ -24,7 +24,6 @@ export default function OpsCommand() {
   const atrisk = STUDENTS.filter(s => s.attendance < 80 || s.confidence < 70);
 
   const collected = ledger.filter(l => l.status === "paid").reduce((a, b) => a + b.billed, 0);
-  const subsidyIssued = ledger.reduce((a, b) => a + (b.gross - b.billed), 0);
   const openShifts = shifts.reduce((a, s) => a + (s.needed - s.filled.length), 0);
 
   const scale = { wk: 0.27, mo: 1, term: 3.4 }[range];
@@ -43,7 +42,7 @@ export default function OpsCommand() {
       <PageHead
         eyebrow={`Program Operations · ${me.name}`}
         title={`${greeting()}, Andy.`}
-        sub="Everything moving in Beyond Limits right now — reach, sessions, paperwork, subsidy and the learners who need a person today."
+        sub="Everything moving in Beyond Limits right now — reach, sessions, paperwork and the learners who need a person today."
         actions={
           <>
             <Button variant="ghost" icon={I.FileBarChart} onClick={() => go("ops-analytics")}>Reach report</Button>
@@ -65,12 +64,11 @@ export default function OpsCommand() {
               <h2 className="display mt-5 max-w-[640px] text-[26px] leading-tight text-white sm:text-[32px]">
                 Saturday is full and demand is still ahead of staffing — that is the decision waiting for you today.
               </h2>
-              <div className="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-4">
+              <div className="mt-7 grid grid-cols-1 gap-3 sm:grid-cols-3">
                 {[
                   { k: "Reached last send", v: "209/212", s: "99% · 3 by voice", tone: "var(--solar)" },
                   { k: "Sessions this week", v: "84", s: "×6-week average +5", tone: "var(--navy-300)" },
                   { k: "On-site attendance", v: "94%", s: "Best week this term", tone: "#34E2E4" },
-                  { k: "Subsidy issued", v: `$${subsidyIssued.toFixed(0)}`, s: "Grant-funded", tone: "var(--navy-200)" },
                 ].map(t => (
                   <div key={t.k} className="rounded-2xl bg-white/7 border border-white/10 px-4 py-3.5">
                     <div className="text-[11px] font-bold uppercase tracking-[.1em] text-white/50">{t.k}</div>
