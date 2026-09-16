@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import * as I from "lucide-react";
 import { useApp } from "../lib/store";
-import { Lockup, BLMark, BLLogo, SolarRule } from "../components/Brand";
+import { Lockup, Wordmark, BLMark, BLLogo, SolarRule } from "../components/Brand";
 import { cx, Chip, Button, Reveal, Tip, Avatar } from "../components/ui";
 import { ORG, IMPACT, PROGRAMS, ENRICHMENT, SCHOLARSHIPS, SPONSORS, COMMUNITY_PARTNERS, CONTEXT_STAT, LANGUAGES, DEMO_NOTICE } from "../lib/data";
 
@@ -54,7 +54,7 @@ export default function Landing() {
       <header className="sticky top-0 z-50">
         <div className={cx("transition-all duration-300", y > 24 ? "border-b border-navy-100 bg-paper/85 backdrop-blur-xl shadow-[0_1px_0_rgb(var(--c-navy-700) / .04)]" : "bg-transparent")}>
           <div className="wrap-wide flex h-[74px] items-center gap-6">
-            <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label="Top"><Lockup /></button>
+            <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label="Top"><Wordmark /></button>
             <nav className="ml-auto hidden lg:flex items-center gap-1">
               {[["Why", "#why"], ["How it works", "#how"], ["Capabilities", "#caps"], ["Programs", "#programs"], ["Beyond ParentSquare", "#compare"]].map(([l, h]) => (
                 <a key={l} href={h} className="rounded-xl px-3.5 py-2 text-[13px] font-semibold text-ink/60 transition-colors hover:bg-white hover:text-navy-700">{l}</a>
