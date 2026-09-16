@@ -98,7 +98,7 @@ export default function FamilyBilling() {
             </div>
           </Card>
 
-          <Card className="navy-field on-dark grain border-0">
+          <Card className="navy-field relative on-dark grain border-0">
             <div className="eyebrow text-solar mb-2">Money should never be the reason</div>
             <p className="text-[12.5px] text-white/75 leading-relaxed">
               If this month's fee is hard — even temporarily — tell us. We'll adjust the scale, pause billing, or set a plan. Amara's seat is not at risk.

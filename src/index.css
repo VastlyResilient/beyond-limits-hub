@@ -30,7 +30,7 @@
 
 *{ -webkit-tap-highlight-color:transparent }
 html{ scroll-behavior:smooth }
-body{
+body{ overflow-x:clip;
   margin:0; font-family:'Plus Jakarta Sans',system-ui,sans-serif; color:var(--ink);
   background:var(--paper); -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
 }
@@ -58,7 +58,8 @@ input,textarea,[contenteditable]{ cursor:text }
 .card{ background:#fff; border:1px solid var(--line); border-radius:var(--radius-card); box-shadow:var(--shadow-1) }
 .card-flat{ background:#fff; border:1px solid var(--line); border-radius:calc(var(--radius-card) - 2px) }
 .paper{ background:var(--paper) }
-.grain{ position:relative }
+/* .grain does NOT set position: `fixed` already establishes the containing block,
+   and position:relative here was overriding Tailwind's `fixed` on the sidebar. */
 .grain::after{ content:""; position:absolute; inset:0; background-image:var(--grain); pointer-events:none; border-radius:inherit }
 .glass-light{ background:rgba(255,255,255,.72); backdrop-filter:blur(14px) saturate(1.3); border:1px solid rgba(255,255,255,.6) }
 .on-dark{ color:var(--navy-50) }
@@ -113,9 +114,9 @@ input,textarea,[contenteditable]{ cursor:text }
 
 /* ============ TOOLTIP (soft glow, Pixar fade — Bobby's spec) ============ */
 .tip{ position:relative }
-.tip>[data-tip]{ position:absolute; bottom:calc(100% + 9px); left:50%; translate:-50% 0; z-index:70;
+.tip>[data-tip]{ position:absolute; bottom:calc(100% + 9px); left:50%; translate:calc(-50% + var(--tx,0px)) 0; z-index:70;
   background:rgba(255,255,255,.97); color:var(--ink); font-size:12px; font-weight:600; line-height:1.35;
-  padding:7px 10px; border-radius:9px; white-space:nowrap; pointer-events:none;
+  padding:7px 10px; border-radius:9px; white-space:normal; width:max-content; max-width:min(260px,72vw); text-wrap:balance; pointer-events:none;
   box-shadow:0 0 0 1px rgb(var(--c-navy-700) / .07), 0 8px 22px -6px rgba(10,18,32,.18), 0 0 26px 4px rgba(255,255,255,.75);
   opacity:0; transform:translateY(5px) scale(.96); transition:opacity .22s ease, transform .22s cubic-bezier(.22,1,.36,1) }
 .tip:hover>[data-tip]{ opacity:1; transform:translateY(0) scale(1) }
@@ -131,3 +132,12 @@ input,textarea,[contenteditable]{ cursor:text }
 /* focus ring */
 :where(button,a,input,textarea,select,[tabindex]):focus-visible{ outline:2px solid var(--navy); outline-offset:3px; border-radius:8px }
 .on-dark :where(button,a,input,textarea,[tabindex]):focus-visible{ outline-color:var(--solar) }
+
+/* ---------------------------------------------------------------------------
+   Grid and flex children default to min-width:auto, so a wide child (a table,
+   a long unbroken string) pushes its sibling off-screen instead of shrinking.
+   :where() keeps this at zero specificity, so any Tailwind min-w-* still wins —
+   this only removes the automatic floor, it never sets a width.
+--------------------------------------------------------------------------- */
+main :where(.grid, .flex) > :where(*) { min-width: 0 }
+main :where(.grid) > :where(*) { max-width: 100% }

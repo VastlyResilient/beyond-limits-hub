@@ -168,7 +168,7 @@ export default function Landing() {
                 </div>
               </div>
 
-              <div className="card absolute -bottom-7 -left-5 w-[232px] p-3.5 shadow-deep animate-float" style={{ animationDelay: "-1.6s" }}>
+              <div className="card absolute -bottom-7 -left-5 w-[232px] p-3.5 shadow-deep">
                 <div className="flex items-center gap-2">
                   <span className="grid h-7 w-7 place-items-center rounded-lg" style={{ background: "#159A631A", color: "#159A63" }}><I.Check size={14} strokeWidth={3} /></span>
                   <span className="text-[11px] font-bold text-ink">Delivered to 209 of 212</span>
@@ -177,7 +177,7 @@ export default function Landing() {
                 <div className="mt-2 text-[10.5px] font-semibold text-ink/45">3 by voice call in progress</div>
               </div>
 
-              <div className="card absolute -right-4 -top-5 w-[196px] p-3.5 shadow-lift animate-float" style={{ animationDelay: "-3.2s" }}>
+              <div className="card absolute -right-4 -top-5 w-[196px] p-3.5 shadow-lift">
                 <div className="eyebrow text-navy-500">Saturday load</div>
                 <div className="mt-1 flex items-baseline gap-1.5"><span className="display text-[24px] tnum text-ink">16/16</span><span className="text-[11px] font-semibold text-ink/45">slots</span></div>
                 <div className="mt-2 text-[10.5px] font-semibold" style={{ color: "#DE8C00" }}>Add a tutor? Demand is ahead.</div>
@@ -390,7 +390,7 @@ export default function Landing() {
       </section>
 
       {/* ================================================= programs rail */}
-      <section id="programs" className="navy-field on-dark grain">
+      <section id="programs" className="navy-field relative on-dark grain">
         <div className="wrap-wide py-20">
           <Reveal>
             <div className="flex flex-wrap items-end justify-between gap-6">
@@ -405,11 +405,11 @@ export default function Landing() {
               </div>
             </div>
           </Reveal>
-          <div className="mt-11 scroll-x -mx-2 px-2">
-            <div className="flex gap-4" style={{ minWidth: "max-content" }}>
+          <div className="mt-11">
+            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
               {PROGRAMS.map((p, i) => (
                 <Reveal key={p.id} delay={i * 55}>
-                  <div className="glass-dark w-[286px] p-6 transition-transform duration-300 hover:-translate-y-1.5">
+                  <div className="glass-dark w-full p-6">
                     <div className="flex items-center justify-between">
                       <span className="grid h-11 w-11 place-items-center rounded-2xl" style={{ background: "rgba(254,222,39,.16)", color: "var(--solar)" }}><I.BookOpen size={19} strokeWidth={1.9} /></span>
                       <span className="mono text-[10px] font-bold text-white/25">{String(i + 1).padStart(2, "0")}</span>
@@ -583,7 +583,7 @@ export default function Landing() {
       </section>
 
       {/* ========================================================= footer */}
-      <footer className="navy-field on-dark grain">
+      <footer className="navy-field relative on-dark grain">
         <div className="wrap-wide relative py-14">
           <div className="grid gap-10 lg:grid-cols-[1.2fr_1fr_1fr]">
             <div>

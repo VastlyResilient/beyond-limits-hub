@@ -59,7 +59,7 @@ export default function OpsTranslation() {
               </div>
               <HBars items={LANGUAGES.map(l => ({ label: l.label, value: l.families, tone: l.code === "en" ? "var(--navy)" : l.code === "es" ? "#0E8C8C" : "#6C4BD6", note: `${l.reach} contacts` }))} />
             </div>
-            <div className="navy-field on-dark grain p-5">
+            <div className="navy-field relative on-dark grain p-5">
               <div className="relative z-10">
                 <div className="eyebrow text-solar mb-3">On call today</div>
                 <div className="space-y-3">

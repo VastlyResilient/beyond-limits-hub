@@ -40,7 +40,7 @@ export default function StudentSessions() {
         sub="Show up as you are. Marcus handles the rest." />
 
       <Reveal>
-        <div className="sun-field grain rounded-[22px] p-6 sm:p-8 mb-8">
+        <div className="sun-field relative grain rounded-[22px] p-6 sm:p-8 mb-8">
           <div className="flex flex-wrap items-center gap-7">
             <div className="min-w-0 flex-1">
               <Chip className="mb-3" tone="navy"><I.MapPin size={11} /> Room A · Long Ridge Road</Chip>

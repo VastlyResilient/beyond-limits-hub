@@ -33,7 +33,7 @@ export default function TutorToday() {
         <div className="space-y-6">
           {/* next-up hero */}
           <Reveal>
-            <Card className="navy-field on-dark grain border-0" pad={false}>
+            <Card className="navy-field relative on-dark grain border-0" pad={false}>
               <div className="p-6">
                 <div className="flex items-center justify-between flex-wrap gap-2 mb-4">
                   <Chip dark><I.Clock size={11} /> Next up · {next.when} · {next.time}</Chip>

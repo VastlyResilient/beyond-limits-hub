@@ -261,7 +261,7 @@ export default function OpsComposer() {
         {/* ------------------------------------------------------- composer */}
         <div className="min-w-0 space-y-4">
           <Card className="!p-0 overflow-hidden">
-            <div className="flex min-w-0 items-center gap-2 overflow-x-auto scroll-x border-b border-navy-100 px-4 py-3">
+            <div className="flex min-w-0 flex-wrap items-center gap-2 border-b border-navy-100 px-4 py-3">
               <span className="shrink-0 text-[11px] font-bold uppercase tracking-[.09em] text-ink/40">Templates</span>
               {ALERT_TEMPLATES.map(t => (
                 <button key={t.id} onClick={() => { setBody(t.body); setUrgent(t.urgent); setSubject("Beyond Limits · " + t.name); toast(`${t.name} template loaded`); }}

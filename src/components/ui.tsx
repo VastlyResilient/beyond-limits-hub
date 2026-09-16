@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useMemo, useRef, useState } from "react";
+import React, { useLayoutEffect, createContext, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { X, Check, ChevronDown, Search, Info } from "lucide-react";
 
 export const cx = (...a: (string | false | null | undefined)[]) => a.filter(Boolean).join(" ");
@@ -135,8 +135,47 @@ export function Tabs<T extends string>({ items, value, onChange, dark = false, v
 }
 
 /* ------------------------------------------------------------------ Tooltip */
-export function Tip({ text, children, side = "top" }: { text: string; children: React.ReactNode; side?: "top"|"bottom" }) {
-  return <span className="tip inline-flex">{children}<span data-tip style={side === "bottom" ? { bottom: "auto", top: "calc(100% + 9px)" } : undefined}>{text}</span></span>;
+export function Tip({ text, children, side = "top" }: { text: string; children: React.ReactNode; side?: "top" | "bottom" }) {
+  const wrap = useRef<HTMLSpanElement>(null);
+  const bub = useRef<HTMLSpanElement>(null);
+
+  /* Keep the bubble inside whatever actually clips it — the sidebar, not the
+     viewport. A centred bubble on a 40px tab used to run off the left edge and
+     get cut in half by the nav's overflow. */
+  useLayoutEffect(() => {
+    const w = wrap.current, b = bub.current;
+    if (!w || !b) return;
+    const place = () => {
+      const PAD = 8;
+      const wr = w.getBoundingClientRect(), br = b.getBoundingClientRect();
+      // nearest ancestor that clips
+      let box: DOMRect | null = null;
+      for (let n = w.parentElement; n; n = n.parentElement) {
+        const cs = getComputedStyle(n);
+        if (cs.overflowX !== "visible" || cs.overflowY !== "visible") { box = n.getBoundingClientRect(); break; }
+      }
+      const left = box ? Math.max(box.left, 0) : 0;
+      const right = box ? Math.min(box.right, window.innerWidth) : window.innerWidth;
+      const centred = wr.left + wr.width / 2 - br.width / 2;
+      let shift = 0;
+      if (centred < left + PAD) shift = left + PAD - centred;
+      else if (centred + br.width > right - PAD) shift = right - PAD - (centred + br.width);
+      b.style.setProperty("--tx", `${Math.round(shift)}px`);
+    };
+    place();
+    const ro = new ResizeObserver(place);
+    ro.observe(b); if (w) ro.observe(w);
+    window.addEventListener("resize", place);
+    return () => { ro.disconnect(); window.removeEventListener("resize", place); };
+  }, [text]);
+
+  return (
+    <span ref={wrap} className="tip inline-flex">
+      {children}
+      <span ref={bub} role="tooltip" data-tip
+        style={side === "bottom" ? { bottom: "auto", top: "calc(100% + 9px)" } : undefined}>{text}</span>
+    </span>
+  );
 }
 
 /* ------------------------------------------------------------------- Modal */

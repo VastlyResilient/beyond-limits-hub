@@ -85,7 +85,7 @@ export default function TutorLog() {
         </Card></Reveal>
 
         <div className="space-y-5 lg:sticky lg:top-[86px]">
-          <Reveal delay={70}><Card className="navy-field on-dark grain border-0">
+          <Reveal delay={70}><Card className="navy-field relative on-dark grain border-0">
             <div className="eyebrow text-solar mb-3">Live preview</div>
             <div className="rounded-xl bg-white/8 border border-white/10 p-4 text-[12.5px] leading-relaxed text-white/85 space-y-2">
               <div className="flex items-center gap-2 flex-wrap">

@@ -105,7 +105,7 @@ export default function OpsPrograms() {
         </Card>
 
         <div className="stack" style={{ ["--gap" as any]: "20px" }}>
-          <Card className="navy-field on-dark grain border-0">
+          <Card className="navy-field relative on-dark grain border-0">
             <SectionTitle dark eyebrow="Scholarships" title="Named awards, real winners" />
             <div className="space-y-4">
               {SCHOLARSHIPS.map(s => (

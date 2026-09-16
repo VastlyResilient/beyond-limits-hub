@@ -127,7 +127,7 @@ export function Radar({ axes, series, size = 260, dark = false }:
 export function Heatmap({ cols, rows, get, dark = false, cell = 26 }:
 { cols: string[]; rows: string[]; get: (r: number, c: number) => number; dark?: boolean; cell?: number }) {
   const shade = (v: number) => v < 0 ? (dark ? "rgba(255,255,255,.05)" : "rgb(var(--c-navy-700) / .05)")
-    : `rgb(var(--c-navy-700) / 0.12 + (v / 100) * 0.78})`;
+    : `rgb(var(--c-navy-700) / ${(0.12 + (v / 100) * 0.78).toFixed(2)})`;
   return (
     <div className="overflow-x-auto scroll-x">
       <div className="inline-block">

@@ -121,7 +121,7 @@ export default function OpsAnalytics() {
         </Card>
 
         {/* reach every family */}
-        <Card className="navy-field on-dark grain border-0">
+        <Card className="navy-field relative on-dark grain border-0">
           <SectionTitle dark eyebrow="Reach every family" title="Language access" />
           <div className="space-y-2.5">
             {LANGUAGES.map(l => (

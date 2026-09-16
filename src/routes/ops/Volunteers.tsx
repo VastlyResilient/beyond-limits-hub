@@ -80,7 +80,7 @@ export default function OpsVolunteers() {
       </div>
 
       {/* kanban columns by date */}
-      <div className="grid grid-flow-col auto-cols-[300px] gap-5 overflow-x-auto pb-4 scroll-x items-start">
+      <div className="grid gap-5 pb-4 items-start sm:grid-cols-2 xl:grid-cols-4">
         {columns.map(([day, dayShifts]) => (
           <div key={day} className="rounded-[20px] bg-navy-50/60 border border-navy-100 p-3.5">
             <div className="flex items-center justify-between px-1.5 pb-3">

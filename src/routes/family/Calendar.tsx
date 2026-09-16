@@ -88,7 +88,7 @@ export default function FamilyCalendar() {
 
         {/* centre info */}
         <Card className="lg:sticky lg:top-[86px]" pad={false}>
-          <div className="navy-field on-dark grain rounded-t-[20px] p-5">
+          <div className="navy-field relative on-dark grain rounded-t-[20px] p-5">
             <div className="eyebrow text-solar mb-2">The center</div>
             <div className="display text-[20px] text-white">Come as you are</div>
             <p className="mt-1.5 text-[12.5px] text-white/65 leading-relaxed">
