@@ -3,6 +3,7 @@ import * as I from "lucide-react";
 import { useApp, NAV_ITEMS, HOME_ROUTE, type Role, type Route } from "../lib/store";
 import { Lockup, BLMark } from "./Brand";
 import { Avatar, Chip, cx, Button, Modal, Tip } from "./ui";
+import { Editable } from "./Editable";
 import { ME, DEMO_NOTICE } from "../lib/data";
 
 const ROLE_META: Record<Role, { label: string; short: string; tone: string; blurb: string }> = {
@@ -64,7 +65,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
                     className={cx("group relative flex w-full items-center gap-2.5 rounded-xl px-3 py-2.5 text-left text-[13px] font-semibold transition-all",
                       on ? "bg-white text-ink shadow-lift" : "text-white/62 hover:bg-white/8 hover:text-white")}>
                     <Icon size={15.5} strokeWidth={on ? 2.4 : 2} style={{ color: on ? meta.tone : undefined }} />
-                    <span className="truncate">{it.label}</span>
+                    <span className="truncate"><Editable id={`nav.${it.id}.label`} fallback={it.label} /></span>
                     {on && <span className="absolute inset-y-1.5 left-0 w-[3px] rounded-full" style={{ background: "var(--solar)" }} />}
                   </button>
                 );
@@ -224,7 +225,7 @@ export function RoleSwitch({ role, setRole, compact = false }: { role: Role; set
   );
 }
 
-export function PageHead({ eyebrow, title, sub, actions, tone = "var(--navy)" }: { eyebrow?: string; title: string; sub?: string; actions?: React.ReactNode; tone?: string }) {
+export function PageHead({ eyebrow, title, sub, actions, tone = "var(--navy)" }: { eyebrow?: string; title: React.ReactNode; sub?: React.ReactNode; actions?: React.ReactNode; tone?: string }) {
   return (
     <div className="mb-6 flex flex-wrap items-end justify-between gap-5">
       <div className="min-w-0">

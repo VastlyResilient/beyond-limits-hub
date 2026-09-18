@@ -2,6 +2,7 @@ import React, { useMemo, useState } from "react";
 import * as I from "lucide-react";
 import { useApp } from "../../lib/store";
 import { PageHead } from "../../components/Shell";
+import { Editable } from "../../components/Editable";
 import { cx, Avatar, Chip, Button, Card, Ring, Stat, Tabs, Tip, Drawer, Bar, useToast, Reveal } from "../../components/ui";
 import { AreaLine, Donut, HBars, Spark } from "../../components/charts";
 import { STUDENTS, TUTORS, SESSIONS, FORMS, LEDGER, AUDIT, ENGAGEMENT_TREND, REACH_BY_GROUP, WEEKLOAD, IMPACT, PROGRAMS, TONE, ENRICHMENT } from "../../lib/data";
@@ -41,8 +42,8 @@ export default function OpsCommand() {
     <>
       <PageHead
         eyebrow={`Program Operations · ${me.name}`}
-        title={`${greeting()}, Andy.`}
-        sub="Everything moving in Beyond Limits right now — reach, sessions, paperwork and the learners who need a person today."
+        title={<Editable id="command.greeting" fallback={`${greeting()}, Andy.`} />}
+        sub={<Editable id="command.hero.sub" fallback="Everything moving in Beyond Limits right now — reach, sessions, paperwork and the learners who need a person today." />}
         actions={
           <>
             <Button variant="ghost" icon={I.FileBarChart} onClick={() => go("ops-analytics")}>Reach report</Button>
@@ -62,7 +63,8 @@ export default function OpsCommand() {
                 <Chip dark>212 family accounts</Chip>
               </div>
               <h2 className="display mt-5 max-w-[640px] text-[26px] leading-tight text-white sm:text-[32px]">
-                Saturday is full and demand is still ahead of staffing — that is the decision waiting for you today.
+                <Editable id="command.hero.headline"
+                  fallback="Saturday is full and demand is still ahead of staffing — that is the decision waiting for you today." />
               </h2>
               <div className="mt-7 grid grid-cols-1 gap-3 sm:grid-cols-3">
                 {[

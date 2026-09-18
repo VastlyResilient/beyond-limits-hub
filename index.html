@@ -19,6 +19,8 @@
           if (!raw) return;
           var p = JSON.parse(raw), r = document.documentElement.style;
           for (var k in p) { if (k.charAt(0) === "-") r.setProperty(k, p[k]); }
+          /* Overrides are applied by React on mount; this only marks that they exist
+             so the app can render its first paint already knowing a change is pending. */
           if (p["--paper"]) document.documentElement.style.backgroundColor = p["--paper"];
         } catch (e) {}
       })();

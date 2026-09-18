@@ -3,6 +3,7 @@ import { StoreProvider, useApp } from "./lib/store";
 import { ToastHost } from "./components/ui";
 import { Shell } from "./components/Shell";
 import { ThemeProvider } from "./lib/theme";
+import { OverridesProvider } from "./lib/overrides";
 import Landing from "./routes/Landing";
 
 import OpsCommand from "./routes/ops/Command";
@@ -62,11 +63,13 @@ function Root() {
 export default function App() {
   return (
     <ThemeProvider>
-      <ToastHost>
-        <StoreProvider>
-          <Root />
-        </StoreProvider>
-      </ToastHost>
+      <OverridesProvider>
+        <ToastHost>
+          <StoreProvider>
+            <Root />
+          </StoreProvider>
+        </ToastHost>
+      </OverridesProvider>
     </ThemeProvider>
   );
 }
