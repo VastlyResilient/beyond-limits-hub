@@ -113,6 +113,10 @@ export function AndyDock() {
         if (chunk.delta) { full += chunk.delta; setStreaming(full); }
         if (chunk.done) {
           setStreaming("");
+          // live web citations come back from the API as real page titles + urls
+          if (chunk.sources?.length) {
+            chunk.sources.forEach((s: any) => sources.push(s.title || s.url));
+          }
           // Every Assistant answer is attributed — including answers drawn only
           // from the Hub's own data. An unattributed answer is a bug.
           const attribution = mode === "assistant"

@@ -24,11 +24,20 @@ export function buildFacts(overrides: Record<string, unknown> = {}): string {
   lines.push(`PARENT BODY: ${ORG.parent}.`);
   lines.push(`MISSION: ${ORG.mission}`);
 
+  // These figures reconcile exactly, and the derivation is spelled out so the
+  // model never has to guess (it once correctly flagged the numbers as not
+  // adding up, because the arithmetic was not shown).
+  const testRows = REAL_PROGRAM.codesThatAreTestRows;
+  const realCodes = REAL_PROGRAM.codesIssued - testRows;
+  const realFamilies = REAL_PROGRAM.families - testRows;
   lines.push(
-    `THE REAL PROGRAM (from Andy's own records): about ${REAL_PROGRAM.families} active families, ` +
-    `down from ${REAL_PROGRAM.familiesOriginallyListed} after Andy removed ${REAL_PROGRAM.familiesRemovedByAndy}. ` +
-    `${REAL_PROGRAM.codesIssued} participant codes exist and ${REAL_PROGRAM.codesThatAreTestRows} of those are test rows, ` +
-    `so ${REAL_PROGRAM.familiesWithoutACode} families still have no code. Programs: ${REAL_PROGRAM.programs.join(", ")}, ` +
+    `THE REAL PROGRAM (from Andy's own records): the roster holds ${REAL_PROGRAM.families} rows, down from ` +
+    `${REAL_PROGRAM.familiesOriginallyListed} after Andy removed ${REAL_PROGRAM.familiesRemovedByAndy}. ` +
+    `Of those rows, ${testRows} are our own test rows, so there are ${realFamilies} real families. ` +
+    `${REAL_PROGRAM.codesIssued} participant codes exist, ${testRows} of which are test rows, so only ${realCodes} real ` +
+    `families have a code. That leaves ${realFamilies} minus ${realCodes} = ${REAL_PROGRAM.familiesWithoutACode} real ` +
+    `families with no code. (If Andy asks, say it this way: ${realFamilies} real families, ${realCodes} coded, ` +
+    `${REAL_PROGRAM.familiesWithoutACode} still to do.) Programs: ${REAL_PROGRAM.programs.join(", ")}, ` +
     `plus a group called ${REAL_PROGRAM.unidentified} that nobody has identified yet.`
   );
 

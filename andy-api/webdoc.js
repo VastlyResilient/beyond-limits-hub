@@ -44,3 +44,41 @@ export async function readWebDoc(url, { maxBytes = 300000, maxChars = 15000 } = 
     clearTimeout(timer);
   }
 }
+
+
+/* ---------------------------------------------------------------------------
+   Should this question go to the web?
+
+   The Assistant is Andy's guide to HIS program. Searching the web for "how many
+   of my families need a code" once produced a Seesaw login-codes help page,
+   which is worse than no source at all. Questions about his own program are
+   answered from FACTS and must not be diluted with unrelated search results.
+--------------------------------------------------------------------------- */
+const PROGRAM_TERMS = [
+  "my famil", "our famil", "the famil", "family", "families", "roster", "learner", "student",
+  "code", "codes", "participant", "agreement", "form", "forms", "paperwork", "signature",
+  "payment", "payments", "invoice", "billing", "subsid", "sliding", "discount", "outstanding",
+  "program", "programs", "session", "sessions", "attendance", "tutor", "tutors", "volunteer",
+  "directory", "hub", "screen", "sidebar", "dashboard", "command center", "beyond limits",
+  "andy", "parentsquare", "remind", "starfish", "horizons", "scse", "bffs",
+  "builder", "assistant", "rename", "reword", "edit", "appearance", "settings", "activity",
+  "accent colour", "accent color", "change",
+];
+
+/* Phrases that mean "not about us" — checked first, so "sliding scale fees at
+   OTHER nonprofits" browses even though "sliding" is a program term. */
+const EXTERNAL_MARKERS = [
+  "other ", "elsewhere", "in general", "generally", "industry", "best practice",
+  "news", "latest", "current", "today", "this week", "weather", "compare", "versus",
+];
+
+export function shouldBrowse(message) {
+  const m = String(message || "").toLowerCase().trim();
+  if (!m) return false;
+  // an explicit link always wins — Andy is pointing at something
+  if (/https?:\/\//.test(m)) return true;
+  // "how do others do this" is a web question even when it mentions our words
+  if (EXTERNAL_MARKERS.some((t) => m.includes(t))) return true;
+  // otherwise: browse only when the question is NOT about his own program
+  return !PROGRAM_TERMS.some((t) => m.includes(t));
+}

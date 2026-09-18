@@ -1,9 +1,9 @@
 import "dotenv/config";
 import { createApp } from "./app.js";
-import { streamChat, extractJson, MODEL } from "./openrouter.js";
+import { streamChat, extractJson, annotationSources, MODEL } from "./openrouter.js";
 import { createSpendStore } from "./spend.js";
 import { validateEditEnvelope } from "./editOps.js";
-import { readWebDoc, isAllowedUrl } from "./webdoc.js";
+import { readWebDoc, isAllowedUrl, shouldBrowse } from "./webdoc.js";
 import { createMemoryStore } from "./memory.js";
 
 const allowedOrigins = (process.env.ALLOWED_ORIGINS || "")
@@ -20,7 +20,7 @@ const app = createApp({
   memoryStore: memory,
 
   chatHandler: async (req, res) => {
-    const { mode, messages, registryIds = [], systemPrompt = "" } = req.body || {};
+    const { mode, messages, registryIds = [], systemPrompt = "", allowWeb = true } = req.body || {};
     if (!Array.isArray(messages) || messages.length === 0) {
       return res.status(400).json({ error: "messages required" });
     }
@@ -37,14 +37,21 @@ const app = createApp({
     res.flushHeaders?.();
 
     const finalMessages = [{ role: "system", content: systemPrompt }, ...messages.slice(-24)];
+    // The Assistant browses live by default; the Builder must not, since it only
+    // ever edits the dashboard and a search would just burn budget.
+    // Browse only when the question is genuinely external — see shouldBrowse().
+    const lastUser = [...messages].reverse().find((m) => m.role === "user")?.content ?? "";
+    const web = mode === "assistant" && allowWeb !== false ? shouldBrowse(lastUser) : false;
     try {
-      const { text, usage } = await streamChat({
+      const { text, usage, annotations } = await streamChat({
         messages: finalMessages,
         apiKey: process.env.OPENROUTER_API_KEY,
+        web,
         onDelta: (d) => res.write(`data: ${JSON.stringify({ delta: d })}\n\n`),
       });
 
-      const usd = (usage?.total_tokens ?? Math.ceil(text.length / 4)) * USD_PER_TOKEN;
+      // Prefer OpenRouter's own accounting; the estimate is only a fallback.
+      const usd = usage?.cost ?? (usage?.total_tokens ?? Math.ceil(text.length / 4)) * USD_PER_TOKEN;
       const spendOk = spend.charge(usd);
 
       let parsed = null;
@@ -74,7 +81,8 @@ const app = createApp({
         } catch { /* compaction is best-effort */ }
       }
 
-      res.write(`data: ${JSON.stringify({ done: true, model: MODEL, spendOk, parsed, text, remaining: spend.remaining() })}\n\n`);
+      const sources = annotationSources(annotations);
+      res.write(`data: ${JSON.stringify({ done: true, model: MODEL, spendOk, parsed, text, sources, remaining: spend.remaining(), web })}\n\n`);
       res.end();
     } catch (e) {
       res.write(`data: ${JSON.stringify({ error: String(e.message || e) })}\n\n`);

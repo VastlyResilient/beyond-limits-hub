@@ -10,6 +10,8 @@ export interface AndyChunk {
   error?: string;
   remaining?: number;
   model?: string;
+  sources?: { title: string; url: string }[];
+  web?: boolean;
 }
 
 export interface AndyRequest {
