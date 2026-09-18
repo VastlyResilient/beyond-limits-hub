@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="./brand/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beyond Limits Hub — Powering Every Learner</title>
+    <meta name="description" content="Beyond Limits Hub is the family, tutor and student engagement platform built exclusively for the Beyond Limits Academic Program of Stamford Peace Youth Foundation." />
+    <meta property="og:title" content="Beyond Limits Hub" />
+    <meta property="og:description" content="One place for sessions, progress, forms, payments and family communication." />
+    <meta name="theme-color" content="#0A1220" />
+    <script type="module" crossorigin src="/beyond-limits-hub/assets/index-CuukzSQS.js"></script>
+    <link rel="stylesheet" crossorigin href="/beyond-limits-hub/assets/index-oxdV5F2g.css">
+  </head>
+  <body>
+    <script>
+      /* Paint the saved theme before React mounts, so there is no flash. */
+      (function () {
+        try {
+          var raw = localStorage.getItem("bl.theme.v2.props");
+          if (!raw) return;
+          var p = JSON.parse(raw), r = document.documentElement.style;
+          for (var k in p) { if (k.charAt(0) === "-") r.setProperty(k, p[k]); }
+          /* Overrides are applied by React on mount; this only marks that they exist
+             so the app can render its first paint already knowing a change is pending. */
+          if (p["--paper"]) document.documentElement.style.backgroundColor = p["--paper"];
+        } catch (e) {}
+      })();
+    </script>
+
+    <div id="root"></div>
+  </body>
+</html>
