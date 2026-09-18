@@ -1,0 +1,5 @@
+node_modules
+.env
+memory.json
+spend.json
+__tests__
