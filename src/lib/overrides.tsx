@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { applyOps, diffOps, type Change, type Overrides } from "./applyOps";
-import { describeTarget } from "./editRegistry";
+import { describeTarget, getTarget } from "./editRegistry";
 
 /* ---------------------------------------------------------------------------
    The override layer.
@@ -85,7 +85,8 @@ export function OverridesProvider({ children }: { children: React.ReactNode }) {
           at: Date.now(),
           description: description.slice(0, 200) || "Change applied",
           source,
-          changes: diffOps(s.overrides, ops).map((d) => ({ ...d, label: describeTarget(d.target) })),
+          changes: diffOps(s.overrides, ops, (t) => getTarget(t)?.defaultValue ?? null)
+            .map((d) => ({ ...d, label: describeTarget(d.target) })),
           before: { ...s.overrides },
         };
         return { overrides: applyOps(s.overrides, ops), entries: [entry, ...s.entries].slice(0, 200) };

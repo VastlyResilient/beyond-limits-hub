@@ -20,7 +20,7 @@ describe("OverridesProvider", () => {
     act(() => { api.commit([{ kind: "setText", target: "nav.ops-command.label", value: "Today" }], "Rename home"); });
     expect(api.get("nav.ops-command.label", "Command Center")).toBe("Today");
     expect(api.entries[0].description).toBe("Rename home");
-    expect(api.entries[0].changes[0].from).toBeNull();
+    expect(api.entries[0].changes[0].from).toBe("Command Center"); // the value actually on screen
     expect(api.entries[0].changes[0].label).toContain("Sidebar label");
     expect(localStorage.getItem(OVERRIDES_KEY)).toContain("Today");
   });

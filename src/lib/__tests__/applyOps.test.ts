@@ -19,3 +19,14 @@ describe("applyOps", () => {
     expect(diffOps({}, [{ kind: "setText", target: "a", value: "2" }])[0].from).toBeNull();
   });
 });
+
+describe("diffOps with a resolver", () => {
+  it("reports the on-screen value when there was no override yet", () => {
+    const d = diffOps({}, [{ kind: "setText", target: "a", value: "Today" }], () => "Command Center");
+    expect(d[0].from).toBe("Command Center");
+  });
+  it("still prefers a real previous override", () => {
+    const d = diffOps({ a: "Yesterday" }, [{ kind: "setText", target: "a", value: "Today" }], () => "Command Center");
+    expect(d[0].from).toBe("Yesterday");
+  });
+});

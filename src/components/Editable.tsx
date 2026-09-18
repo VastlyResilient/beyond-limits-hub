@@ -29,15 +29,20 @@ export function Editable({ id, fallback, className = "", as: Tag = "span" }: {
       data-edit-focused={focus.on ? "true" : undefined}
       className={cx(
         className,
-        focus.on && "rounded-md ring-2 ring-emerald-400 ring-offset-2 ring-offset-white/40 transition-all"
+        // Dashed, not solid: a solid ring reads as "already applied", which
+        // contradicts the preview card's "nothing has changed yet".
+        focus.on && "rounded-md px-1 outline-dashed outline-2 outline-offset-2 outline-emerald-500"
       )}
     >
-      {shown}
-      {showing && (
-        <span className="ml-2 text-[11px] font-semibold not-italic opacity-50">
-          (was “{value}”)
-        </span>
-      )}
+      {showing ? (
+        <>
+          <span className="opacity-45 line-through">{value}</span>
+          <span className="mx-1.5 font-bold text-emerald-700">{focus.preview}</span>
+          <span className="rounded-full bg-emerald-100 px-1.5 py-0.5 text-[9.5px] font-bold uppercase tracking-[.08em] text-emerald-800 align-middle">
+            proposed
+          </span>
+        </>
+      ) : value}
     </Tag>
   );
 }

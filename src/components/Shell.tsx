@@ -4,6 +4,7 @@ import { useApp, NAV_ITEMS, HOME_ROUTE, type Role, type Route } from "../lib/sto
 import { Lockup, BLMark } from "./Brand";
 import { Avatar, Chip, cx, Button, Modal, Tip } from "./ui";
 import { Editable } from "./Editable";
+import { useOverrides } from "../lib/overrides";
 import { AndyDock } from "./AndyDock";
 import { AndyWelcome } from "./AndyWelcome";
 import { ME, DEMO_NOTICE } from "../lib/data";
@@ -17,6 +18,7 @@ const ROLE_META: Record<Role, { label: string; short: string; tone: string; blur
 
 export function Shell({ children }: { children: React.ReactNode }) {
   const { role, setRole, route, go, me, dispatched, threads } = useApp();
+  const { get: getOverride } = useOverrides();
   const [open, setOpen] = useState(false);
   const [bell, setBell] = useState(false);
   const [demo, setDemo] = useState(false);
@@ -102,7 +104,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
 
             <div className="hidden xl:block text-[13px] font-semibold text-ink/45">
               {role === "ops" ? "Program Operations" : ROLE_META[role].label} <span className="mx-1.5 text-ink/25">/</span>
-              <span className="text-navy-700">{currentLabel(route, groups)}</span>
+              <span className="text-navy-700">{currentLabel(route, groups, (id, fb) => getOverride(`nav.${id}.label`, fb))}</span>
             </div>
 
             <div className="ml-auto flex items-center gap-2">
@@ -206,8 +208,8 @@ export function Shell({ children }: { children: React.ReactNode }) {
   );
 }
 
-function currentLabel(route: Route, groups: { items: { id: Route; label: string }[] }[]) {
-  for (const g of groups) for (const it of g.items) if (it.id === route) return it.label;
+function currentLabel(route: Route, groups: { group: string; items: { id: Route; label: string }[] }[], getLabel?: (id: Route, fallback: string) => string) {
+  for (const g of groups) for (const it of g.items) if (it.id === route) return getLabel ? getLabel(it.id, it.label) : it.label;
   return "";
 }
 

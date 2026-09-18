@@ -13,12 +13,21 @@ export function applyOps(current: Overrides, ops: Change[]): Overrides {
   return next;
 }
 
-/** Pure: what changed, for the activity log. */
-export function diffOps(before: Overrides, ops: Change[]) {
-  return ops.map((op) => ({
-    target: op.target,
-    from: before[op.target] ?? null,
-    to: op.value,
-    kind: op.kind,
-  }));
+/**
+ * Pure: what changed, for the activity log.
+ *
+ * `resolveFrom` supplies the value that was actually on screen. Without it the
+ * log would say "nothing -> Today" for a target that plainly read "Command
+ * Center" a moment earlier, because an override map only holds CHANGED values.
+ */
+export function diffOps(
+  before: Overrides,
+  ops: Change[],
+  resolveFrom?: (target: string) => string | number | boolean | null
+) {
+  return ops.map((op) => {
+    const had = Object.prototype.hasOwnProperty.call(before, op.target);
+    const from = had ? before[op.target] : (resolveFrom ? resolveFrom(op.target) : null);
+    return { target: op.target, from: from ?? null, to: op.value, kind: op.kind };
+  });
 }
