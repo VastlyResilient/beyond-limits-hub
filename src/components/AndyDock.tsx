@@ -31,11 +31,13 @@ const STARTERS: Record<Mode, string[]> = {
     "Rename my home screen",
     "Change the greeting on my dashboard",
     "Change my Command Center headline",
+    "What can you change for me?",
   ],
   assistant: [
     "How many families are in my program?",
     "What can the Builder change for me?",
     "Which forms are outstanding?",
+    "How many families still need a code?",
   ],
 };
 
@@ -111,7 +113,16 @@ export function AndyDock() {
         if (chunk.delta) { full += chunk.delta; setStreaming(full); }
         if (chunk.done) {
           setStreaming("");
-          setTurns((t) => [...t, { role: "assistant", content: chunk.parsed?.say || full, sources: sources.length ? sources : undefined }]);
+          // Every Assistant answer is attributed — including answers drawn only
+          // from the Hub's own data. An unattributed answer is a bug.
+          const attribution = mode === "assistant"
+            ? (sources.length ? sources : ["Your Hub's own data"])
+            : undefined;
+          // In Builder mode the streamed text IS the JSON envelope, so show the
+          // parsed "say". In Assistant mode the streamed text IS the answer —
+          // using parsed.say there would throw the real reply away.
+          const content = mode === "builder" ? (chunk.parsed?.say || full) : (full || chunk.parsed?.say || "");
+          setTurns((t) => [...t, { role: "assistant", content, sources: attribution }]);
 
           if (mode === "builder" && chunk.parsed) {
             const p = chunk.parsed;
@@ -184,8 +195,11 @@ export function AndyDock() {
   }
 
   return (
+    // Never wider than the screen: on a 390px phone a fixed 400px panel hung off
+    // the left edge and clipped its own text.
     <div className={cx("fixed bottom-5 right-5 z-[190] flex flex-col overflow-hidden rounded-[20px] border border-navy-100 bg-white shadow-deep",
-      mode === "builder" ? "w-[430px]" : "w-[400px]")} style={{ maxHeight: "min(720px, 86vh)" }} role="dialog" aria-label="Andy's AI">
+      mode === "builder" ? "w-[min(430px,calc(100vw-24px))]" : "w-[min(400px,calc(100vw-24px))]")}
+      style={{ maxHeight: "min(720px, 86vh)" }} role="dialog" aria-label="Andy's AI" data-andy="panel">
 
       {/* header + the two-mode toggle */}
       <div className="flex items-center gap-2 border-b border-navy-100 px-4 py-3">

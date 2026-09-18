@@ -23,11 +23,32 @@ export interface AndyRequest {
    Deterministic replies so the Playwright suite never calls the model and
    demos never depend on a network round-trip. Enabled with VITE_ANDY_MOCK=1. */
 
+/** Demo answers are grounded in the same facts the live model receives, so the
+    published demo demonstrates real grounding rather than a content-free stub. */
 export function mockReply(opts: AndyRequest): string[] {
-  if (opts.mode === "assistant") {
-    return ["Your roster holds ", "113 learners", " across four programs."];
+  if (opts.mode === "builder") {
+    return ["Got it — I can change that. ", "Here is the change I would make:"];
   }
-  return ["Got it — I can change that. ", "Here is the change I would make:"];
+  const last = opts.messages[opts.messages.length - 1];
+  const q = (last?.content ?? "").toLowerCase();
+  if (/famil|roster|how many/.test(q)) {
+    return ["About ", "113 families", " are in your program, across four programs. ",
+            "104 of them still have no participant code."];
+  }
+  if (/code/.test(q)) {
+    return ["9 codes exist and 2 of those are test rows, so ", "104 families", " still need one."];
+  }
+  if (/form|outstanding|paperwork/.test(q)) {
+    return ["Your Hub lists outstanding forms on the Digital Forms screen."];
+  }
+  if (/builder|change|edit/.test(q)) {
+    return ["The Builder can change sidebar names, the Command Center wording, and the accent colour. ",
+            "It cannot change numbers or delete anything."];
+  }
+  if (/program/.test(q)) {
+    return ["Your four programs are Main, Horizons, SCSE and Starfish, plus a group called BFFS that nobody has identified yet."];
+  }
+  return ["I can answer from your Hub's own records. Ask me about families, codes, forms or programs."];
 }
 
 /** Did Andy actually name a new value? A lone apostrophe in "wasn't" is not a quote. */
@@ -115,7 +136,7 @@ export async function* streamAndy(opts: AndyRequest): AsyncGenerator<AndyChunk> 
 }
 
 export async function fetchPage(url: string): Promise<{ title: string; url: string; text: string } | null> {
-  if (ANDY_MOCK) return { title: "Mock page", url, text: "Mock fetched content." };
+  if (ANDY_MOCK) return { title: url.replace(/^https?:\/\//, "").replace(/\/$/, ""), url, text: "Simulated page content for the demo." };
   try {
     const res = await fetch(`${ANDY_API_BASE}/api/fetch`, {
       method: "POST",

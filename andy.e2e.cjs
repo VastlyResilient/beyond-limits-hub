@@ -82,6 +82,21 @@ const fail = (m) => { throw new Error(m); };
   if (previews) fail("Assistant proposed a change — it must only answer");
   console.log("OK  Assistant answers without proposing changes");
 
+  // 7. the panel must fit on a phone — a fixed-width panel once hung off the edge
+  for (const [w, h] of [[430, 900], [390, 844], [360, 780]]) {
+    const m = await ctx.newPage();
+    await m.setViewportSize({ width: w, height: h });
+    await m.addInitScript("localStorage.setItem('bl.andy.welcomed','1')");
+    await m.goto(`${BASE}/#/ops-command`, { waitUntil: "networkidle" });
+    await m.getByRole("button", { name: /Ask Andy/i }).click();
+    await m.waitForTimeout(500);
+    const box = await m.locator("[data-andy=panel]").boundingBox();
+    if (!box) fail(`panel did not render at ${w}px`);
+    if (box.x < -1 || box.x + box.width > w + 1) fail(`panel overflows at ${w}px: x=${box.x} w=${box.width}`);
+    console.log(`OK  panel fits at ${w}px (${Math.round(box.width)}px wide)`);
+    await m.close();
+  }
+
   if (errors.length) fail("page errors: " + errors.join(" | "));
   console.log("\nE2E OK — no page errors");
   await b.close();

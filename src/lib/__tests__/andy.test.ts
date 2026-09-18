@@ -25,8 +25,20 @@ describe("andy mock mode", () => {
     expect(p!.ops).toHaveLength(0);
   });
 
-  it("streams text chunks", () => {
-    expect(mockReply({ ...base, mode: "assistant", messages: [] }).join("")).toContain("113");
+  it("grounds assistant demo answers in the real program numbers", () => {
+    const r = mockReply({ ...base, mode: "assistant", messages: [{ role: "user", content: "How many families are in my program?" }] }).join("");
+    expect(r).toContain("113");
+    expect(r).toContain("104");
+  });
+
+  it("answers a code question with the real code numbers", () => {
+    const r = mockReply({ ...base, mode: "assistant", messages: [{ role: "user", content: "how many still need a code" }] }).join("");
+    expect(r).toContain("104");
+  });
+
+  it("falls back honestly when it has nothing specific", () => {
+    const r = mockReply({ ...base, mode: "assistant", messages: [{ role: "user", content: "zzz" }] }).join("");
+    expect(r).toContain("your Hub's own records");
   });
 
   it("finds the first url", () => {
