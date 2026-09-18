@@ -49,7 +49,11 @@ export function AndyWelcome({ onOpenBuilder }: { onOpenBuilder?: () => void }) {
       <div className="relative w-full max-w-[660px] overflow-hidden rounded-[24px] bg-white shadow-deep">
         <div className="navy-field on-dark grain relative p-7">
           <div className="relative z-10">
-            <div className="eyebrow text-white/50">Welcome</div>
+            <div className="flex items-center gap-3.5">
+              <img src="./brand/andy-avatar.png" alt="" width={64} height={64}
+                style={{ width: 64, height: 64, display: "block" }} />
+              <div className="eyebrow text-white/50">Welcome</div>
+            </div>
             <h2 className="display mt-2.5 text-[26px] leading-tight text-white sm:text-[30px]">
               This is your Hub. Now it has a helper.
             </h2>
