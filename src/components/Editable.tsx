@@ -31,7 +31,9 @@ export function Editable({ id, fallback, className = "", as: Tag = "span" }: {
         className,
         // Dashed, not solid: a solid ring reads as "already applied", which
         // contradicts the preview card's "nothing has changed yet".
-        focus.on && "rounded-md px-1 outline-dashed outline-2 outline-offset-2 outline-emerald-500"
+        // whitespace-normal overrides the sidebar's `truncate` while a proposal is
+        // showing, otherwise the "proposed" tag is clipped to a single letter.
+        focus.on && "rounded-md px-1 whitespace-normal outline-dashed outline-2 outline-offset-2 outline-emerald-500"
       )}
     >
       {showing ? (
