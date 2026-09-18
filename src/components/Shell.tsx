@@ -5,6 +5,7 @@ import { Lockup, BLMark } from "./Brand";
 import { Avatar, Chip, cx, Button, Modal, Tip } from "./ui";
 import { Editable } from "./Editable";
 import { AndyDock } from "./AndyDock";
+import { AndyWelcome } from "./AndyWelcome";
 import { ME, DEMO_NOTICE } from "../lib/data";
 
 const ROLE_META: Record<Role, { label: string; short: string; tone: string; blurb: string }> = {
@@ -169,6 +170,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
 
         {/* Andy's AI — Builder and Assistant. Ops only. */}
         {role === "ops" && <AndyDock />}
+        {role === "ops" && <AndyWelcome />}
 
         <footer className="border-t border-navy-100 bg-white/60 px-6 py-5">
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-[12.5px] text-ink/50">

@@ -20,6 +20,7 @@ import OpsAnalytics from "./routes/ops/Analytics";
 import OpsPrograms from "./routes/ops/Programs";
 import OpsAppearance from "./routes/ops/Appearance";
 import Owner from "./routes/Owner";
+import OpsActivity from "./routes/ops/Activity";
 
 import TutorToday from "./routes/tutor/Today";
 import TutorRoster from "./routes/tutor/Roster";
@@ -45,7 +46,7 @@ function Router() {
     "ops-calendar": OpsCalendar, "ops-payments": OpsPayments,
     "ops-forms": OpsForms, "ops-volunteers": OpsVolunteers, "ops-directory": OpsDirectory,
     "ops-messages": OpsMessages, "ops-translation": OpsTranslation, "ops-analytics": OpsAnalytics,
-    "ops-programs": OpsPrograms, "ops-appearance": OpsAppearance, "owner": Owner,
+    "ops-programs": OpsPrograms, "ops-appearance": OpsAppearance, "owner": Owner, "ops-activity": OpsActivity,
     "tutor-today": TutorToday, "tutor-roster": TutorRoster, "tutor-log": TutorLog, "tutor-messages": TutorMessages,
     "family-feed": FamilyFeed, "family-calendar": FamilyCalendar,
     "family-forms": FamilyForms, "family-billing": FamilyBilling, "family-messages": FamilyMessages, "student-sessions": StudentSessions,

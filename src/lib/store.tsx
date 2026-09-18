@@ -11,7 +11,7 @@ export type Route =
   | "tutor-today" | "tutor-roster" | "tutor-log" | "tutor-messages"
   | "family-feed" | "family-calendar" | "family-forms" | "family-billing" | "family-messages"
   | "student-sessions"
-  | "owner";
+  | "owner" | "ops-activity";
 
 export interface Nav { route: Route; go: (r: Route) => void; role: Role; setRole: (r: Role) => void; params: Record<string, any>; setParams: (p: Record<string, any>) => void; }
 
@@ -48,6 +48,7 @@ export const NAV_ITEMS: Record<Role, { group: string; items: { id: Route; label:
     ]},
     { group: "Settings", items: [
       { id: "ops-appearance", label: "Appearance", icon: "Palette" },
+      { id: "ops-activity", label: "Activity", icon: "History" },
     ]},
   ],
   tutor: [
@@ -79,7 +80,7 @@ export const NAV_ITEMS: Record<Role, { group: string; items: { id: Route; label:
 };
 
 /* -------------------------------------------------------------------- store */
-const ROUTES: Route[] = ["home","ops-command","ops-composer","ops-sessions","ops-calendar","ops-payments","ops-forms","ops-volunteers","ops-directory","ops-messages","ops-translation","ops-analytics","ops-programs","ops-appearance","tutor-today","tutor-roster","tutor-log","tutor-messages","family-feed","family-calendar","family-forms","family-billing","family-messages","student-sessions","owner"];
+const ROUTES: Route[] = ["home","ops-command","ops-composer","ops-sessions","ops-calendar","ops-payments","ops-forms","ops-volunteers","ops-directory","ops-messages","ops-translation","ops-analytics","ops-programs","ops-appearance","tutor-today","tutor-roster","tutor-log","tutor-messages","family-feed","family-calendar","family-forms","family-billing","family-messages","student-sessions","owner","ops-activity"];
 
 const readHash = (): Route => {
   const h = (typeof window !== "undefined" ? window.location.hash.replace(/^#\/?/, "") : "") as Route;
