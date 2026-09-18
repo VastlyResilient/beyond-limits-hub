@@ -6,27 +6,28 @@ export interface EditableTarget {
   kind: EditKind;
   screen: string;  // Route id it appears on
   help: string;    // one line explaining it
+  defaultValue: string; // what it says before anyone changes it
 }
 
 export const EDIT_REGISTRY: EditableTarget[] = [
   { id: "nav.ops-command.label", label: "Sidebar label — Command Center", kind: "setText",
-    screen: "ops-command", help: "The words Andy sees in the left sidebar for his home screen." },
+    screen: "ops-command", help: "The words Andy sees in the left sidebar for his home screen.", defaultValue: "Command Center" },
   { id: "nav.ops-composer.label", label: "Sidebar label — Posts & Alerts", kind: "setText",
-    screen: "ops-command", help: "Names the screen for sending messages to families." },
+    screen: "ops-command", help: "Names the screen for sending messages to families.", defaultValue: "Posts & Alerts" },
   { id: "nav.ops-sessions.label", label: "Sidebar label — Attendance", kind: "setText",
-    screen: "ops-command", help: "Names the attendance screen in the sidebar." },
+    screen: "ops-command", help: "Names the attendance screen in the sidebar.", defaultValue: "Attendance" },
   { id: "nav.ops-forms.label", label: "Sidebar label — Digital Forms", kind: "setText",
-    screen: "ops-command", help: "Names the forms and agreements screen." },
+    screen: "ops-command", help: "Names the forms and agreements screen.", defaultValue: "Digital Forms" },
   { id: "nav.ops-directory.label", label: "Sidebar label — Directory", kind: "setText",
-    screen: "ops-command", help: "Names the people directory screen." },
+    screen: "ops-command", help: "Names the people directory screen.", defaultValue: "Directory" },
   { id: "command.greeting", label: "Command Center greeting", kind: "setText",
-    screen: "ops-command", help: "The line at the top of the Command Center, e.g. 'Good afternoon, Andy.'" },
+    screen: "ops-command", help: "The line at the top of the Command Center, e.g. 'Good afternoon, Andy.'", defaultValue: "Good afternoon, Andy." },
   { id: "command.hero.headline", label: "Command Center headline", kind: "setText",
-    screen: "ops-command", help: "The big sentence inside the dark card on the Command Center." },
+    screen: "ops-command", help: "The big sentence inside the dark card on the Command Center.", defaultValue: "Saturday is full and demand is still ahead of staffing — that is the decision waiting for you today." },
   { id: "command.hero.sub", label: "Command Center sub-heading", kind: "setText",
-    screen: "ops-command", help: "The paragraph under the Command Center heading." },
+    screen: "ops-command", help: "The paragraph under the Command Center heading.", defaultValue: "Everything moving in Beyond Limits right now — reach, sessions, paperwork and the learners who need a person today." },
   { id: "brand.accent", label: "Accent colour", kind: "setColor",
-    screen: "ops-appearance", help: "The highlight colour used for badges and small call-outs, as #rrggbb." },
+    screen: "ops-appearance", help: "The highlight colour used for badges and small call-outs, as #rrggbb.", defaultValue: "#e8b84b" },
 ];
 
 export const REGISTRY_IDS = EDIT_REGISTRY.map((t) => t.id);

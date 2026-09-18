@@ -21,3 +21,12 @@ describe("edit registry", () => {
     expect(describeTarget("nope")).toBe("nope");
   });
 });
+
+describe("registry defaults", () => {
+  it("every target declares its starting value", () => {
+    EDIT_REGISTRY.forEach((t) => expect(t.defaultValue.length).toBeGreaterThan(0));
+  });
+  it("the Command Center label starts as Command Center", () => {
+    expect(getTarget("nav.ops-command.label")!.defaultValue).toBe("Command Center");
+  });
+});

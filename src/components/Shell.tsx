@@ -4,6 +4,7 @@ import { useApp, NAV_ITEMS, HOME_ROUTE, type Role, type Route } from "../lib/sto
 import { Lockup, BLMark } from "./Brand";
 import { Avatar, Chip, cx, Button, Modal, Tip } from "./ui";
 import { Editable } from "./Editable";
+import { AndyDock } from "./AndyDock";
 import { ME, DEMO_NOTICE } from "../lib/data";
 
 const ROLE_META: Record<Role, { label: string; short: string; tone: string; blurb: string }> = {
@@ -165,6 +166,9 @@ export function Shell({ children }: { children: React.ReactNode }) {
         </header>
 
         <main className="min-w-0 flex-1">{children}</main>
+
+        {/* Andy's AI — Builder and Assistant. Ops only. */}
+        {role === "ops" && <AndyDock />}
 
         <footer className="border-t border-navy-100 bg-white/60 px-6 py-5">
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-[12.5px] text-ink/50">
