@@ -14,6 +14,12 @@ const memory = createMemoryStore("./memory.json");
 
 /** ~$0.50 per million tokens, a deliberately conservative estimate. */
 const USD_PER_TOKEN = 0.0000005;
+const HUB_GROUNDING = [
+  "The roster contains 111 real families.",
+  "Seven real families have a participant code.",
+  "Therefore 104 real families still need a code.",
+  "When answering from these facts, do not browse the web and do not invent a different count.",
+].join(" ");
 
 const app = createApp({
   allowedOrigins,
@@ -36,7 +42,19 @@ const app = createApp({
     res.setHeader("Connection", "keep-alive");
     res.flushHeaders?.();
 
-    const finalMessages = [{ role: "system", content: systemPrompt }, ...messages.slice(-24)];
+    const memorySnapshot = memory.get();
+    const memoryContext = [
+      memorySnapshot.summary,
+      ...memorySnapshot.turns.slice(-8).map((turn) => `${turn.role}: ${turn.content}`),
+    ].filter(Boolean).join("\n");
+    const assistantContext = mode === "assistant"
+      ? `\n\nHUB FACTS (trusted data from this Hub):\n${HUB_GROUNDING}` +
+        (memoryContext ? `\n\nHUB MEMORY:\n${memoryContext}` : "")
+      : "";
+    const finalMessages = [
+      { role: "system", content: `${systemPrompt}${assistantContext}`.trim() },
+      ...messages.slice(-24),
+    ];
     // The Assistant browses live by default; the Builder must not, since it only
     // ever edits the dashboard and a search would just burn budget.
     // Browse only when the question is genuinely external — see shouldBrowse().
