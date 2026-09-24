@@ -4,6 +4,7 @@ import { PageHead } from "../../components/Shell";
 import { Avatar, Bar, Button, Card, Chip, SearchBox, Tabs, cx, useToast } from "../../components/ui";
 import { STUDENTS, CHANNEL_FIT } from "../../lib/data";
 import { useApp } from "../../lib/store";
+import { InfoButton } from "../../components/InfoButton";
 
 const QUICK = [
   "Thanks for letting us know — we'll reschedule.",
@@ -92,6 +93,7 @@ export default function OpsMessages() {
               </div>
               <div className="ml-auto flex items-center gap-2">
                 <Chip tone="teal"><I.Languages size={12} /> Auto-translated</Chip>
+                <InfoButton id="C-01" />
                 <Button size="sm" variant="quiet" icon={I.Phone} onClick={() => toast(`Calling ${thread.with.split(" (")[0]} through the program line`)}>Call</Button>
               </div>
             </div>

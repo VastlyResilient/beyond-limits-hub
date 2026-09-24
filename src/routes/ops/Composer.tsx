@@ -4,6 +4,7 @@ import { useApp } from "../../lib/store";
 import { PageHead } from "../../components/Shell";
 import { cx, Avatar, Chip, Button, Card, Tabs, Tip, useToast, Bar, Select, Ring } from "../../components/ui";
 import { HBars, Spark } from "../../components/charts";
+import { InfoButton } from "../../components/InfoButton";
 import { ALERT_TEMPLATES, LANGUAGES, CHANNEL_FIT, REACH_BY_GROUP, STUDENTS, TUTORS, TONE, ORG } from "../../lib/data";
 
 type ChId = "app" | "sms" | "email" | "voice";
@@ -293,7 +294,10 @@ export default function OpsComposer() {
                 <span className={cx("text-[11px] font-semibold", overSms ? "text-signal-amber" : "text-ink/40")}>
                   {overSms ? `${smsLen} characters — SMS will send as ${Math.ceil(smsLen / 160)} segments` : `${body.length} characters`}
                 </span>
-                <span className="text-[11px] font-semibold text-ink/40">Personalises per family with {VARS.length} merge fields</span>
+                <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-ink/40">
+                  Personalises per family with {VARS.length} merge fields
+                  <InfoButton id="C-05" />
+                </span>
               </div>
             </div>
           </Card>
@@ -355,7 +359,10 @@ export default function OpsComposer() {
           <Card>
             <div className="flex items-center justify-between">
               <div className="text-[13px] font-bold text-ink">Projected delivery</div>
-              <Chip tone={worstReach >= 96 ? "green" : worstReach >= 85 ? "amber" : "red"}>{worstReach}% floor</Chip>
+              <span className="inline-flex items-center gap-1.5">
+                <Chip tone={worstReach >= 96 ? "green" : worstReach >= 85 ? "amber" : "red"}>{worstReach}% floor</Chip>
+                <InfoButton id="C-02" headingOverride={`${worstReach}% floor`} />
+              </span>
             </div>
             <div className="mt-4 space-y-3.5">
               {projections.map(p => (

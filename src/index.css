@@ -121,6 +121,29 @@ input,textarea,[contenteditable]{ cursor:text }
   opacity:0; transform:translateY(5px) scale(.96); transition:opacity .22s ease, transform .22s cubic-bezier(.22,1,.36,1) }
 .tip:hover>[data-tip]{ opacity:1; transform:translateY(0) scale(1) }
 
+
+/* ============ INFO BUTTONS (Add-On v3) ============
+   Opens on hover, click, and keyboard focus. Deliberately NOT pointer-events:none
+   like .tip — the popup is selectable and dismissible, and the pointer must be
+   able to travel into it without the popup vanishing. */
+.info-wrap{ position:relative }
+.info-btn{ display:inline-flex; align-items:center; justify-content:center; width:16px; height:16px;
+  border-radius:999px; color:var(--navy); opacity:.62; cursor:pointer; flex:none; translate:0 -1px;
+  transition:opacity .18s ease, transform .18s ease, background .18s ease, color .18s ease }
+.info-btn:hover{ opacity:1; background:color-mix(in srgb, var(--navy) 12%, transparent); transform:scale(1.12) }
+.info-btn[aria-expanded="true"]{ opacity:1; background:color-mix(in srgb, var(--navy) 16%, transparent) }
+.on-dark .info-btn, .dark-panel .info-btn{ color:currentColor }
+.info-pop{ position:absolute; bottom:calc(100% + 9px); left:50%; translate:calc(-50% + var(--tx,0px)) 0; z-index:80;
+  background:rgba(255,255,255,.98); color:var(--ink); text-align:left;
+  padding:10px 12px; border-radius:11px; width:max-content; max-width:min(310px,78vw);
+  display:block; pointer-events:auto;
+  box-shadow:0 0 0 1px rgb(var(--c-navy-700) / .09), 0 10px 26px -8px rgba(10,18,32,.24), 0 0 26px 4px rgba(255,255,255,.7);
+  opacity:0; transform:translateY(5px) scale(.97);
+  animation:infoIn .2s cubic-bezier(.22,1,.36,1) forwards }
+@keyframes infoIn{ to{ opacity:1; transform:translateY(0) scale(1) } }
+.info-pop-head{ display:block; font-size:12px; font-weight:800; letter-spacing:-.01em; margin-bottom:3px }
+.info-pop-body{ display:block; font-size:12px; font-weight:500; line-height:1.42; color:color-mix(in srgb, var(--ink) 78%, transparent); text-wrap:pretty }
+
 /* ============ LAYOUT HELPERS ============ */
 .wrap{ width:100%; max-width:1200px; margin:0 auto; padding:0 22px }
 .wrap-wide{ width:100%; max-width:1440px; margin:0 auto; padding:0 22px }

@@ -3,6 +3,7 @@ import * as I from "lucide-react";
 import { PageHead } from "../../components/Shell";
 import { Avatar, Bar, Button, Card, Chip, Reveal, Tabs, Tip, cx, useToast } from "../../components/ui";
 import { HBars } from "../../components/charts";
+import { InfoButton } from "../../components/InfoButton";
 import { LANGUAGES, TRANSLATION_PAIRS } from "../../lib/data";
 
 type Verdict = "approved" | "review";
@@ -89,9 +90,12 @@ export default function OpsTranslation() {
             { id: "review", label: "Awaiting review", badge: pending },
             { id: "approved", label: "Approved", badge: rows.length - pending },
           ]} value={filter as any} onChange={(v) => setFilter(v as any)} />
-          <button onClick={() => setShowBack(v => !v)} className="inline-flex items-center gap-2 text-[12.5px] font-semibold text-ink/55 hover:text-ink">
-            <I.Repeat size={14} /> Back-translation check {showBack ? "on" : "off"}
-          </button>
+          <span className="inline-flex items-center gap-1.5">
+            <button onClick={() => setShowBack(v => !v)} className="inline-flex items-center gap-2 text-[12.5px] font-semibold text-ink/55 hover:text-ink">
+              <I.Repeat size={14} /> Back-translation check {showBack ? "on" : "off"}
+            </button>
+            <InfoButton id="C-03" />
+          </span>
         </div>
       </Reveal>
 

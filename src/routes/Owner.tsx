@@ -86,6 +86,7 @@ export default function Owner() {
             <div className="flex flex-wrap items-center gap-2.5">
               <Chip dark><I.Eye size={12} /> Owner view</Chip>
               <Chip dark>Supervision</Chip>
+              <Chip dark>V2.0 · Info buttons</Chip>
               <span className="ml-auto text-[11.5px] font-semibold text-white/45">Beyond Limits Academic Program · Stamford</span>
             </div>
             <h1 className="display mt-5 max-w-[720px] text-[30px] leading-tight text-white sm:text-[38px]">
