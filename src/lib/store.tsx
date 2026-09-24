@@ -83,7 +83,18 @@ export const NAV_ITEMS: Record<Role, { group: string; items: { id: Route; label:
 const ROUTES: Route[] = ["home","ops-command","ops-composer","ops-sessions","ops-calendar","ops-payments","ops-forms","ops-volunteers","ops-directory","ops-messages","ops-translation","ops-analytics","ops-programs","ops-appearance","tutor-today","tutor-roster","tutor-log","tutor-messages","family-feed","family-calendar","family-forms","family-billing","family-messages","student-sessions","owner","ops-activity"];
 
 const readHash = (): Route => {
-  const h = (typeof window !== "undefined" ? window.location.hash.replace(/^#\/?/, "") : "") as Route;
+  /* Resume the last screen: a phone app that always drops you back on the
+     marketing page does not feel like an app. The hash wins when present (deep
+     links still work); otherwise fall back to the last route this device used. */
+  let raw = "";
+  if (typeof window !== "undefined") {
+    raw = window.location.hash.replace(/^#\/?/, "");
+    if (!raw) {
+      try { raw = localStorage.getItem("bl.lastRoute") || ""; } catch {}
+      if (raw) window.location.hash = "/" + raw;
+    }
+  }
+  const h = raw as Route;
   return (ROUTES as string[]).includes(h) ? h : "home";
 };
 const roleOf = (r: Route): Role | null =>
@@ -104,7 +115,11 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
 
   const go = useCallback((r: Route) => {
     setRoute(r); setParams({});
-    if (typeof window !== "undefined") { window.location.hash = "/" + r; window.scrollTo({ top: 0, behavior: "smooth" }); }
+    if (typeof window !== "undefined") {
+      window.location.hash = "/" + r;
+      try { localStorage.setItem("bl.lastRoute", r); } catch {}
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
     const ro = roleOf(r); if (ro) setRoleRaw(ro);
   }, []);
 

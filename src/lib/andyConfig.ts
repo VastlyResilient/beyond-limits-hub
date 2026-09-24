@@ -1,4 +1,7 @@
-const PRODUCTION_API = "https://andy-api.up.railway.app";
+/* The deployed andy-api. Kept in sync with .env.production — this is the value
+   used when VITE_ANDY_API is absent, so it must be the real host. The old value
+   (andy-api.up.railway.app) returns 404 and produced a silent "network error". */
+const PRODUCTION_API = "https://andy-api-production.up.railway.app";
 
 export function resolveAndApiBase(explicit?: string): string {
   const v = (explicit ?? "").trim();

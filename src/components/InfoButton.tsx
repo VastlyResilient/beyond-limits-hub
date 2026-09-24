@@ -82,10 +82,30 @@ export function InfoButton({ id, headingOverride, side = "top" }: {
       else if (centred + br.width > right - PAD) shift = right - PAD - (centred + br.width);
       b.style.setProperty("--tx", `${Math.round(shift)}px`);
 
+      /* Vertical placement, in priority order:
+           1. above, inside BOTH the clipping panel and the viewport (the norm)
+           2. below, inside the viewport
+           3. above the viewport edge, even if it leaves the panel — an overlay
+              that overhangs its card is fine, one cut off by the screen is not
+           4. whichever side has more room
+         Checking only the panel (as this first did) put the popup under a phone's
+         bottom edge whenever the panel itself started low. */
       b.style.top = ""; b.style.bottom = "";
-      const naturalTop = wr.top - br.height - 9;
-      const topLimit = (box ? Math.max(box.top, 0) : 0) + PAD;
-      if (naturalTop < topLimit) { b.style.bottom = "auto"; b.style.top = "calc(100% + 9px)"; }
+      const vh = window.innerHeight;
+      const need = br.height + 9;
+      const boxTop = (box ? Math.max(box.top, 0) : 0) + PAD;
+      const boxBottom = (box ? Math.min(box.bottom, vh) : vh) - PAD;
+      const fitsAboveBox = (wr.top - need) >= boxTop;
+      const fitsBelowBox = (wr.bottom + need) <= boxBottom;
+      const fitsAboveVp = (wr.top - need) >= PAD;
+      const fitsBelowVp = (wr.bottom + need) <= vh - PAD;
+      let openBelow: boolean;
+      if (fitsAboveBox) openBelow = false;
+      else if (fitsBelowBox) openBelow = true;
+      else if (fitsAboveVp) openBelow = false;
+      else if (fitsBelowVp) openBelow = true;
+      else openBelow = (vh - wr.bottom) > wr.top;
+      if (openBelow) { b.style.bottom = "auto"; b.style.top = "calc(100% + 9px)"; }
       else { b.style.bottom = "calc(100% + 9px)"; b.style.top = "auto"; }
     };
     place();

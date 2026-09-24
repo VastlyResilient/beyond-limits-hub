@@ -127,7 +127,7 @@ input,textarea,[contenteditable]{ cursor:text }
    like .tip — the popup is selectable and dismissible, and the pointer must be
    able to travel into it without the popup vanishing. */
 .info-wrap{ position:relative }
-.info-btn{ display:inline-flex; align-items:center; justify-content:center; width:16px; height:16px;
+.info-btn{ position:relative; display:inline-flex; align-items:center; justify-content:center; width:16px; height:16px;
   border-radius:999px; color:var(--navy); opacity:.62; cursor:pointer; flex:none; translate:0 -1px;
   transition:opacity .18s ease, transform .18s ease, background .18s ease, color .18s ease }
 .info-btn:hover{ opacity:1; background:color-mix(in srgb, var(--navy) 12%, transparent); transform:scale(1.12) }
@@ -143,6 +143,35 @@ input,textarea,[contenteditable]{ cursor:text }
 @keyframes infoIn{ to{ opacity:1; transform:translateY(0) scale(1) } }
 .info-pop-head{ display:block; font-size:12px; font-weight:800; letter-spacing:-.01em; margin-bottom:3px }
 .info-pop-body{ display:block; font-size:12px; font-weight:500; line-height:1.42; color:color-mix(in srgb, var(--ink) 78%, transparent); text-wrap:pretty }
+
+
+/* ============ MOBILE APP SHELL ============
+   Installed to a home screen the app runs edge to edge, so the notch and the
+   home indicator would sit on top of the header and the dock. env() is 0 in a
+   normal browser tab, so these are no-ops there. */
+:root{
+  --safe-t:env(safe-area-inset-top,0px);
+  --safe-b:env(safe-area-inset-bottom,0px);
+  --safe-l:env(safe-area-inset-left,0px);
+  --safe-r:env(safe-area-inset-right,0px);
+}
+body{ padding-left:var(--safe-l); padding-right:var(--safe-r) }
+@media (display-mode: standalone){
+  /* the header already has its own height; only add the inset in app mode */
+  body{ overscroll-behavior-y:none; -webkit-tap-highlight-color:transparent }
+}
+/* Stop iOS Safari zooming the whole page when a small input is focused. */
+@media (max-width:820px){ input,select,textarea{ font-size:16px !important } }
+
+
+/* Touch target: the glyph stays 16px so the layout is unchanged, but the
+   tappable area is 38px square. A finger cannot reliably hit 16px. */
+.info-btn::after{ content:""; position:absolute; inset:-11px; border-radius:999px }
+.info-pop{ -webkit-tap-highlight-color:transparent }
+@media (max-width:820px){
+  .info-pop{ max-width:min(300px,84vw); padding:11px 13px }
+  .info-pop-body{ font-size:12.5px; line-height:1.5 }
+}
 
 /* ============ LAYOUT HELPERS ============ */
 .wrap{ width:100%; max-width:1200px; margin:0 auto; padding:0 22px }
