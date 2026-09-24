@@ -156,7 +156,7 @@ export default function OpsMessages() {
           )}
 
           <Card>
-            <div className="eyebrow text-ink/35 mb-3">How this family prefers to be reached</div>
+            <div className="eyebrow text-ink/35 mb-3"><span className="inline-flex items-center gap-1.5">How this family prefers to be reached <InfoButton id="C-04" /></span></div>
             <div className="space-y-3">
               {CHANNEL_FIT.map(c => (
                 <div key={c.ch}>

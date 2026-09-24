@@ -2,27 +2,35 @@ import { describe, it, expect } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import React from "react";
 import { InfoButton } from "../InfoButton";
-import { INFO, READY_INFO_IDS, PENDING_INFO } from "../../lib/infoButtons";
+import { INFO, READY_INFO_IDS, PROPOSED_INFO, PENDING_INFO, RENDERED_INFO_IDS } from "../../lib/infoButtons";
 
-/* Copy is transcribed from the Add-On v3 deck. These assertions exist so a
-   later refactor cannot quietly paraphrase approved wording, and so the seven
-   blocked definitions can never ship as invented text. */
+/* The four approved strings are transcribed from the Add-On v3 deck — these
+   assertions stop a later refactor paraphrasing them. The seven beta entries
+   are grounded in the real data model and each records what still needs
+   confirming, so no definition can ship looking more settled than it is. */
 
 describe("info-button registry", () => {
   it("has exactly the four approved buttons ready to build", () => {
     expect(READY_INFO_IDS.sort()).toEqual(["C-01", "C-02", "C-03", "C-05"]);
   });
 
-  it("holds the seven blocked definitions with NO body text", () => {
-    expect(PENDING_INFO.map((p) => p.id).sort()).toEqual(["C-04", "C-06", "C-09", "F-02", "F-03", "FA-01", "T-02"]);
-    for (const p of PENDING_INFO) {
-      expect(p.body, `${p.id} must not carry invented copy`).toBe("");
-      expect(p.pendingNote && p.pendingNote.length).toBeTruthy();
+  it("renders all eleven buttons: four approved plus seven beta definitions", () => {
+    expect(RENDERED_INFO_IDS.length).toBe(11);
+    expect(PENDING_INFO.length).toBe(0);
+  });
+
+  it("every beta definition is grounded and says what still needs confirming", () => {
+    expect(PROPOSED_INFO.map((p) => p.id).sort()).toEqual(
+      ["C-04", "C-06", "C-09", "F-02", "F-03", "FA-01", "T-02"]);
+    for (const p of PROPOSED_INFO) {
+      expect(p.status).toBe("proposed");
+      expect(p.body.length, `${p.id} needs real copy`).toBeGreaterThan(40);
+      expect(p.awaiting && p.awaiting.length, `${p.id} must record what is unconfirmed`).toBeTruthy();
     }
   });
 
-  it("every ready entry has a heading and a body", () => {
-    for (const id of READY_INFO_IDS) {
+  it("every entry has a heading and a body", () => {
+    for (const id of RENDERED_INFO_IDS) {
       expect(INFO[id].heading.length).toBeGreaterThan(0);
       expect(INFO[id].body.length).toBeGreaterThan(20);
     }
@@ -40,18 +48,31 @@ describe("info-button registry", () => {
     expect(INFO["C-03"].heading).toBe("Back-translation check");
     expect(INFO["C-05"].heading).toBe("Merge fields");
   });
+
+  it("keeps the beta definitions consistent with the data model they describe", () => {
+    // F-02 must state the 1-5 -> 0-100 conversion the deck asked for.
+    expect(INFO["F-02"].body).toMatch(/1 to 5|0-100/);
+    // F-03 must state the 1-5 scale and the minimum sample.
+    expect(INFO["F-03"].body).toMatch(/1 to 5/);
+    expect(INFO["F-03"].body).toMatch(/five/);
+    // C-04 must state its window.
+    expect(INFO["C-04"].body).toMatch(/90 days/);
+    // FA-01 is family-facing and must reassure about excused absences.
+    expect(INFO["FA-01"].body).toMatch(/never count against/i);
+    // T-02 must state the scale.
+    expect(INFO["T-02"].body).toMatch(/out of 100/);
+  });
 });
 
 describe("InfoButton", () => {
-  it("renders nothing for a pending definition", () => {
-    const { container } = render(<InfoButton id="C-04" />);
-    expect(container.querySelector("button")).toBeNull();
-    expect(container.textContent).toBe("");
-  });
-
   it("renders nothing for an unknown id", () => {
     const { container } = render(<InfoButton id="nope" />);
     expect(container.querySelector("button")).toBeNull();
+  });
+
+  it("renders a beta definition (proposed is shown, not hidden)", () => {
+    render(<InfoButton id="C-09" />);
+    expect(screen.getByRole("button", { name: /More information: Reach by group/i })).toBeTruthy();
   });
 
   it("renders an accessible button for a ready definition", () => {

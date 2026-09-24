@@ -5,6 +5,7 @@ import { PageHead } from "../../components/Shell";
 import { cx, Avatar, Chip, Button, Card, Ring, Drawer, useToast, Reveal, SearchBox } from "../../components/ui";
 import { DeltaBars } from "../../components/charts";
 import { STUDENTS, SUBJECT_SKILLS } from "../../lib/data";
+import { InfoButton } from "../../components/InfoButton";
 
 export default function TutorRoster() {
   const { me, go } = useApp();
@@ -67,11 +68,11 @@ export default function TutorRoster() {
               </div>
               <div className="rounded-xl bg-paper p-4 text-center">
                 <div className="display tnum text-[22px] text-ink">{sel.confidence}%</div>
-                <div className="text-[10px] font-bold uppercase tracking-wider text-ink/45 mt-1">Confidence</div>
+                <div className="mt-1 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-ink/45">Confidence <InfoButton id="F-02" /></div>
               </div>
             </div>
             <div>
-              <div className="eyebrow text-navy-500 mb-3">Skill growth</div>
+              <div className="eyebrow text-navy-500 mb-3"><span className="inline-flex items-center gap-1.5">Skill growth <InfoButton id="T-02" /></span></div>
               <DeltaBars items={SUBJECT_SKILLS.slice(0, 3).map(x => ({ label: x.subject, before: x.before, now: x.now }))} />
             </div>
             <Button variant="primary" className="w-full" icon={I.PenLine}

@@ -4,6 +4,7 @@ import { PageHead } from "../../components/Shell";
 import { cx, Avatar, Chip, Button, Card, SectionTitle, Drawer, SearchBox, Select, useToast, Reveal } from "../../components/ui";
 import { Spark } from "../../components/charts";
 import { STUDENTS, TUTORS, FORMS } from "../../lib/data";
+import { InfoButton } from "../../components/InfoButton";
 
 type RoleTab = "all" | "student" | "guardian" | "tutor";
 
@@ -175,7 +176,7 @@ export default function OpsDirectory() {
                     {[["Attendance", `${currentStudent.attendance}%`], ["Confidence", `${currentStudent.confidence}%`], ["Last session", currentStudent.lastSession]].map(([l, v]) => (
                       <div key={l} className="rounded-xl bg-navy-50 py-2.5">
                         <div className="display text-[16px] tnum">{v}</div>
-                        <div className="text-[9.5px] font-bold uppercase tracking-wider text-ink/40 mt-0.5">{l}</div>
+                        <div className="mt-0.5 inline-flex items-center gap-1 text-[9.5px] font-bold uppercase tracking-wider text-ink/40">{l}{l === "Rating" && <InfoButton id="F-03" />}{l === "Confidence" && <InfoButton id="F-02" />}</div>
                       </div>
                     ))}
                   </div>
@@ -207,7 +208,7 @@ export default function OpsDirectory() {
                   {[["Sessions", String(currentTutor.sessions)], ["Rating", currentTutor.rating.toFixed(1)], ["Joined", currentTutor.joined]].map(([l, v]) => (
                     <div key={l} className="rounded-xl bg-navy-50 py-2.5">
                       <div className="display text-[16px] tnum">{v}</div>
-                      <div className="text-[9.5px] font-bold uppercase tracking-wider text-ink/40 mt-0.5">{l}</div>
+                      <div className="mt-0.5 inline-flex items-center gap-1 text-[9.5px] font-bold uppercase tracking-wider text-ink/40">{l}{l === "Rating" && <InfoButton id="F-03" />}{l === "Confidence" && <InfoButton id="F-02" />}</div>
                     </div>
                   ))}
                 </div>

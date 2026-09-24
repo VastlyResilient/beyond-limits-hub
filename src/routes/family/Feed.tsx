@@ -4,6 +4,7 @@ import { useApp } from "../../lib/store";
 import { PageHead } from "../../components/Shell";
 import { cx, Avatar, Chip, Button, Card, Bar, Ring, useToast, Reveal } from "../../components/ui";
 import { STUDENTS, SESSIONS, ENRICHMENT, TONE } from "../../lib/data";
+import { InfoButton } from "../../components/InfoButton";
 
 export default function FamilyFeed() {
   const { posts, readPost, setReadPost, me, go } = useApp();
@@ -117,7 +118,7 @@ export default function FamilyFeed() {
               <div className="flex items-center gap-4">
                 <Ring value={amara.attendance} size={66} stroke={7} tone="#6C4BD6"><span className="tnum text-[13px] font-bold">{amara.attendance}%</span></Ring>
                 <div className="text-[12.5px] text-ink/60 leading-relaxed">
-                  <div className="font-bold text-ink text-[13px]">Attendance</div>
+                  <div className="inline-flex items-center gap-1.5 font-bold text-ink text-[13px]">Attendance <InfoButton id="FA-01" /></div>
                   Amara has been showing up — that's the whole game.
                 </div>
               </div>

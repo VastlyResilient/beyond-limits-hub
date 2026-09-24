@@ -107,7 +107,7 @@ export default function OpsTranslation() {
                 <div className="flex items-center gap-3 border-b border-navy-100 bg-navy-50/60 px-4 py-2.5">
                   <I.Languages size={14} className="text-navy-500" />
                   <span className="text-[12.5px] font-bold text-navy-700">{r.lang}</span>
-                  <span className="text-[11.5px] text-ink/45">{r.by}</span>
+                  <span className="inline-flex items-center gap-1.5 text-[11.5px] text-ink/45">{r.by} <InfoButton id="C-06" /></span>
                   <Chip tone={r.state === "approved" ? "green" : "amber"} className="ml-auto">
                     {r.state === "approved" ? "Approved" : "Needs a human"}
                   </Chip>

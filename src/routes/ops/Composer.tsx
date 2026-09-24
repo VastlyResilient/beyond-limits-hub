@@ -215,7 +215,7 @@ export default function OpsComposer() {
 
           <Card>
             <div className="text-[13px] font-bold text-ink">Channels</div>
-            <p className="mt-0.5 text-[11.5px] text-ink/50">Reach percentages are measured, not assumed.</p>
+            <p className="mt-0.5 inline-flex items-center gap-1.5 text-[11.5px] text-ink/50">Reach percentages are measured, not assumed. <InfoButton id="C-04" /></p>
             <div className="mt-3.5 space-y-2">
               {CHANNELS.map(c => {
                 const on = ch.includes(c.id);

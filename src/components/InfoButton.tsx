@@ -96,7 +96,8 @@ export function InfoButton({ id, headingOverride, side = "top" }: {
     return () => { ro.disconnect(); window.removeEventListener("resize", place); window.removeEventListener("scroll", place, true); };
   }, [open, side]);
 
-  if (!def || def.status !== "ready") return null;
+  // `pending` carries no confirmed copy, so it renders nothing at all.
+  if (!def || def.status === "pending") return null;
 
   const heading = headingOverride ?? def.heading;
 

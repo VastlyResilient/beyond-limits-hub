@@ -133,7 +133,7 @@ input,textarea,[contenteditable]{ cursor:text }
 .info-btn:hover{ opacity:1; background:color-mix(in srgb, var(--navy) 12%, transparent); transform:scale(1.12) }
 .info-btn[aria-expanded="true"]{ opacity:1; background:color-mix(in srgb, var(--navy) 16%, transparent) }
 .on-dark .info-btn, .dark-panel .info-btn{ color:currentColor }
-.info-pop{ position:absolute; bottom:calc(100% + 9px); left:50%; translate:calc(-50% + var(--tx,0px)) 0; z-index:80;
+.info-pop{ position:absolute; text-transform:none; letter-spacing:normal; text-wrap:pretty; bottom:calc(100% + 9px); left:50%; translate:calc(-50% + var(--tx,0px)) 0; z-index:80;
   background:rgba(255,255,255,.98); color:var(--ink); text-align:left;
   padding:10px 12px; border-radius:11px; width:max-content; max-width:min(310px,78vw);
   display:block; pointer-events:auto;

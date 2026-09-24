@@ -5,6 +5,7 @@ import { cx, Chip, Button, Card, SectionTitle, useToast, Reveal } from "../../co
 import { AreaLine, BarSeries, Donut, HBars } from "../../components/charts";
 import { useApp } from "../../lib/store";
 import { TONE, IMPACT, ENGAGEMENT_TREND, ATTENDANCE_TREND, REACH_BY_GROUP, CHANNEL_FIT, AUDIT, LANGUAGES } from "../../lib/data";
+import { InfoButton } from "../../components/InfoButton";
 
 type Range = "3m" | "6m";
 const RANGE_LABEL: Record<Range, string> = { "3m": "Last 3 months", "6m": "Last 6 months" };
@@ -89,7 +90,7 @@ export default function OpsAnalytics() {
         </Card>
 
         <Card>
-          <SectionTitle eyebrow="Equity lens" title="Reach by group" />
+          <SectionTitle eyebrow="Equity lens" title="Reach by group" right={<InfoButton id="C-09" />} />
           <HBars items={REACH_BY_GROUP.map(g => ({ label: g.group, value: g.pct, tone: g.pct >= 95 ? "#159A63" : g.pct >= 85 ? "var(--navy)" : "#DE8C00", note: "%" }))} />
           <div className="mt-4 rounded-xl bg-navy-50 px-3.5 py-2.5 text-[11.5px] text-navy-700 leading-snug">
             {REACH_BY_GROUP[2].group} is the softest group at {REACH_BY_GROUP[2].pct}% — {REACH_BY_GROUP[2].engaged} of {REACH_BY_GROUP[2].families} families engaged.
@@ -101,7 +102,7 @@ export default function OpsAnalytics() {
           <div className="px-5 pt-4"><SectionTitle eyebrow="Channel fit" title="Right channel, right message" /></div>
           <div className="overflow-x-auto">
             <table data-trim="analytics" className="tbl md:min-w-[520px]">
-              <thead><tr><th>Channel</th><th className="text-right">Reach</th><th>Best for</th><th className="w-[34%]">Coverage</th></tr></thead>
+              <thead><tr><th>Channel</th><th className="text-right"><span className="inline-flex items-center gap-1.5">Reach <InfoButton id="C-04" /></span></th><th>Best for</th><th className="w-[34%]">Coverage</th></tr></thead>
               <tbody>
                 {CHANNEL_FIT.map(c => (
                   <tr key={c.ch}>
